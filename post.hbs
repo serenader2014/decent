@@ -14,16 +14,16 @@
 {{navigation}}
 
 <main class="content" role="main">
-    <article class="{{post_class}}">
+    <article class="{{post_class}} single-post">
 
-        <header class="post-header">
+        <header class="post-header short-diver">
             <h1 class="post-title">{{title}}</h1>
             <section class="post-meta">
                 <time class="post-date" datetime="{{date format='YYYY-MM-DD'}}">{{date format="DD MMMM YYYY"}}</time> {{tags prefix=" on "}}
             </section>
         </header>
 
-        <section class="post-content">
+        <section class="post-content short-diver">
             {{content}}
         </section>
 
@@ -38,7 +38,7 @@
             </div>
             {{/if}}
 
-            <section class="author">
+            <section class="author short-diver">
                 <h4><a href="{{url}}">{{name}}</a></h4>
 
                 {{#if bio}}
@@ -61,19 +61,19 @@
 </main>
 
 <aside class="read-next">
+    <h2 class="title">Read More</h2>
     {{#next_post}}
     <a class="read-next-story {{#if image}}" style="background-image: url({{image}}){{else}}no-cover{{/if}}" href="{{url}}">
         <section class="post">
-            <h2>{{title}}</h2>
+            <h2 title="{{title}}">{{title}}</h2>
             <p>{{excerpt words="19"}}&hellip;</p>
+            <div class="white-mask"></div>
         </section>
-    </a>
-    {{/next_post}}
-    {{#prev_post}}
-    <a class="read-next-story prev {{#if image}}" style="background-image: url({{image}}){{else}}no-cover{{/if}}" href="{{url}}">
+    </a>{{/next_post}}{{#prev_post}}<a class="read-next-story prev {{#if image}}" style="background-image: url({{image}}){{else}}no-cover{{/if}}" href="{{url}}">
         <section class="post">
-            <h2>{{title}}</h2>
+            <h2 title="{{title}}">{{title}}</h2>
             <p>{{excerpt words="19"}}&hellip;</p>
+            <div class="white-mask"></div>
         </section>
     </a>
     {{/prev_post}}

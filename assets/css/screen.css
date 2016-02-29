@@ -258,16 +258,6 @@ p, ul, ol, dl {
     text-rendering: geometricPrecision;
 }
 
-ol, ul {
-    padding-left: 3rem;
-}
-
-ol ol, ul ul,
-ul ol, ol ul {
-    margin: 0 0 0.4em 0;
-    padding-left: 2em;
-}
-
 dl dt {
     float: left;
     width: 180px;
@@ -298,8 +288,10 @@ hr {
     height: 1px;
     border: 0;
     border-top: #EFEFEF 1px solid;
-    margin: 3.2em 0;
+    margin: 3.2em auto;
     padding: 0;
+    width: 90%;
+    max-width: 700px;
 }
 
 blockquote {
@@ -332,42 +324,6 @@ blockquote cite a { font-weight: normal; }
 
 mark {
     background-color: #fdffb6;
-}
-
-code, tt {
-    padding: 1px 3px;
-    font-family: Inconsolata, monospace, sans-serif;
-    font-size: 0.85em;
-    white-space: pre-wrap;
-    border: #E3EDF3 1px solid;
-    background: #F7FAFB;
-    border-radius: 2px;
-    -webkit-font-feature-settings: "liga" 0;
-    -moz-font-feature-settings: "liga" 0;
-    font-feature-settings: "liga" 0;
-}
-
-pre {
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    margin: 0 0 1.75em 0;
-    border: #E3EDF3 1px solid;
-    width: 100%;
-    padding: 10px;
-    font-family: Inconsolata, monospace, sans-serif;
-    font-size: 0.9em;
-    white-space: pre;
-    overflow: auto;
-    background: #F7FAFB;
-    border-radius: 3px;
-}
-
-pre code, pre tt {
-    font-size: inherit;
-    white-space: pre-wrap;
-    background: transparent;
-    border: none;
-    padding: 0;
 }
 
 kbd {
@@ -440,12 +396,59 @@ margin on the iframe, cause it breaks stuff. */
     margin: 0;
 }
 
-.main-header, .nav, .nav-cover, .content, .site-footer {
-    width: 700px;
-    margin: 0 auto;
+.main-header,
+.nav,
+.nav-cover,
+.post-list .post,
+.pagination,
+.site-footer,
+.single-post h1,
+.single-post h2,
+.single-post h3,
+.single-post h4,
+.single-post h5,
+.single-post h6,
+.single-post p,
+.single-post ul,
+.single-post ol,
+.single-post blockquote,
+.single-post .single-post-header,
+.single-post table,
+.read-next {
+    width: 90%;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    word-wrap: break-word;
+}
+
+.main-header,
+.nav,
+.nav-cover,
+.post-list .post,
+.pagination,
+.site-footer,
+.post .post-header,
+.post .post-footer {
     text-align: center;
 }
 
+
+.post ol, .post ul {
+    padding-left: 3rem;
+}
+
+.post ol ol, .post ul ul,
+.post ul ol, .post ol ul {
+    margin: 0 0 0.4em 0;
+    padding-left: 2em;
+}
+
+.post ol p,
+.post ul p {
+    width: 100%;
+    margin-bottom: auto;
+}
 
 /* ==========================================================================
    3. Utilities - These things get used a lot
@@ -540,7 +543,8 @@ a:hover {
     padding-bottom: 20px;
     padding-top: 150px;
     border-bottom: 1px solid #111111;
-    width: 500px;
+    width: 90%;
+    max-width: 500px;
 }
 
 .main-header.has-nav {
@@ -549,7 +553,8 @@ a:hover {
 }
 
 .nav {
-    width: 500px;
+    width: 90%;
+    max-width: 500px;
     margin-bottom: 50px;
     padding-bottom: 20px;
 }
@@ -561,7 +566,7 @@ a:hover {
     font-size: 0;
 }
 
-.nav ul:before, .nav ul:after, .site-footer:before {
+.nav ul:before, .nav ul:after, .site-footer:before, .author-info:after {
     content: '';
     display: block;
     width: 100%;
@@ -569,7 +574,6 @@ a:hover {
     background: -moz-linear-gradient(left, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%);
     background: -webkit-linear-gradient(left, rgba(0,0,0,0) 0%,rgba(0,0,0,1) 50%,rgba(0,0,0,0) 100%);
     background: linear-gradient(to right, rgba(0,0,0,0) 0%,rgba(0,0,0,1) 50%,rgba(0,0,0,0) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#00000000',GradientType=1 );
 }
 
 .nav li {
@@ -592,18 +596,26 @@ a:hover {
     font-style: italic;
 }
 
+.post-meta a {
+    text-decoration: underline;
+}
+
 .post-excerpt p {
     text-indent: 2em;
     margin-bottom: 10px;
 }
 
 .post {
-    margin-bottom: 40px;
     font-size: 16px;
-    position: relative;
 }
 
-.post:after {
+
+.content .short-diver {
+    position: relative;
+    margin-bottom: 40px;
+}
+
+.content .short-diver:after {
     content: '';
     display: block;
     width: 40px;
@@ -644,19 +656,260 @@ a:hover {
     margin: auto;
 }
 
+.post-content img {
+    max-width: 700px;
+    width: 100%;
+}
+
+.post-content a {
+    text-decoration: underline;
+}
+
+code,
+pre {
+    color: black;
+    background: none;
+    text-shadow: 0 1px white;
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    text-align: left;
+    white-space: pre-wrap;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: break-word;
+    line-height: 1.5;
+
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+}
+
+pre::-moz-selection, pre ::-moz-selection,
+code::-moz-selection, code ::-moz-selection {
+    text-shadow: none;
+    background: #b3d4fc;
+}
+
+pre::selection, pre ::selection,
+code::selection, code ::selection {
+    text-shadow: none;
+    background: #b3d4fc;
+}
+
+@media print {
+    code,
+    pre {
+        text-shadow: none;
+    }
+}
+
+/* Code blocks */
+pre {
+    padding: 1em;
+    margin: 1em 0;
+}
+
+pre code {
+    display: block;
+    width: 90%;
+    max-width: 700px;
+    margin: auto;
+}
+
+:not(pre) > code,
+pre {
+    background: #fafafa;
+    border-top: 1px solid #eeeeee;
+    border-bottom: 1px solid #eeeeee;
+}
+
+/* Inline code */
+:not(pre) > code {
+    padding: .1em;
+    border-radius: .3em;
+    white-space: normal;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+    color: slategray;
+}
+
+.token.punctuation {
+    color: #999;
+}
+
+.namespace {
+    opacity: .7;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+    color: #905;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+    color: #690;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+    color: #a67f59;
+    background: hsla(0, 0%, 100%, .5);
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+    color: #07a;
+}
+
+.token.function {
+    color: #DD4A68;
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+    color: #e90;
+}
+
+.token.important,
+.token.bold {
+    font-weight: bold;
+}
+.token.italic {
+    font-style: italic;
+}
+
+.token.entity {
+    cursor: help;
+}
+
+
+
+
 
 /* ==========================================================================
    6. Author profile
    ========================================================================== */
+.author-cover {
+    height: 32rem;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
 
+.author-image {
+    margin-top: 50px;
+}
 
+.author-image .img {
+    border: 4px solid white;
+}
 
+.author-image.has-cover {
+    margin-top: -52px;
+}
+
+.author-info {
+    width: 90%;
+    max-width: 700px;
+    text-align: center;
+    margin: 20px auto 40px;
+}
+
+.author-info:after {
+    margin-top: 40px;
+}
+
+.author-title {
+    font-size: 4rem;
+}
+
+.author-bio {
+    font-size: 2rem;
+    font-weight: normal;
+    color: #666666;
+}
+
+.author-meta {
+    color: #9EABB3;
+    font-size: 1.6rem;
+}
+
+.author-meta a:hover {
+    color: #111;
+}
+
+.author-meta a {
+    margin-top: 10px;
+    color: #9EABB3;
+}
 
 /* ==========================================================================
    7. Read More - Next/Prev Post Links
    ========================================================================== */
 
+.read-next .title {
+    text-align: center;
+    font-style: italic;
+    font-family: "Merriweather", serif;
+}
 
+.read-next a {
+    display: inline-block;
+    width: 50%;
+    box-sizing: border-box;
+    vertical-align: top;
+    padding-right: 10px;
+}
+
+.read-next a:last-child {
+    padding-left: 10px;
+    padding-right: 0;
+}
+
+.read-next a h2 {
+    font-size: 3rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.read-next .post {
+    position: relative;
+}
+
+.read-next .white-mask {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: -moz-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
+    background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%);
+    background: linear-gradient(to bottom, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%);
+}
 
 /* ==========================================================================
    8. Third Party Elements - Embeds from other services
@@ -690,7 +943,8 @@ a:hover {
    ========================================================================== */
 
 .site-footer {
-    width: 500px;
+    max-width: 500px;
+    width: 90%;
     padding: 20px 0;
     font-size: 12px;
     line-height: 1.3;
@@ -746,11 +1000,6 @@ a:hover {
     h6 {
         font-size: 1.8rem;
     }
-
-    .main-header, .nav, .nav-cover, .content, .site-footer {
-        width: 90%;
-    }
-
 }
 
 
@@ -804,6 +1053,17 @@ a:hover {
         font-size: 2.5rem;
     }
 
+    .read-next a {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+        padding-right: 0;
+        padding-left: 0;
+    }
+
+    .read-next a h2 {
+        font-size: 2rem;
+    }
 }
 
 
