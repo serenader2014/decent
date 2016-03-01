@@ -3,12 +3,12 @@
 
 
 {{! The big featured header }}
-<header class="main-header {{#if @blog.navigation}}has-nav{{/if}}">
+<header class="main-header detail-page image-bg {{#if @blog.cover}}has-cover" style="background-image: url({{@blog.cover}}){{else}}no-cover{{/if}}">
     <h1 class="page-title"><a href="{{@blog.url}}">{{@blog.title}}</a></h1>
     <h2 class="page-description">{{@blog.description}}</h2>
+    {{navigation}}
 </header>
 
-{{navigation}}
 
 {{! The main content area on the homepage }}
 <main id="content" class="content post-list" role="main">

@@ -2,28 +2,18 @@
 {{! The tag above means - insert everything in this file into the {body} of the default.hbs template }}
 
 {{! If we have a tag cover, display that - else blog cover - else nothing }}
-<header class="main-header tag-head {{#if tag.image}}" style="background-image: url({{tag.image}}){{else}}{{#if @blog.cover}}" style="background-image: url({{@blog.cover}}){{else}}no-cover{{/if}}{{/if}}">
-
-    <div class="vertical">
-        <div class="main-header-content inner">
-            <h1 class="page-title">{{tag.name}}</h1>
-            <h2 class="page-description">
-                {{#if tag.description}}
-                    {{tag.description}}
-                {{else}}
-                    A {{pagination.total}}-post collection
-                {{/if}}
-            </h2>
-        </div>
-    </div>
+<header class="main-header tag-head detail-page image-bg {{#if tag.image}}has-cover" style="background-image: url({{tag.image}}){{else}}{{#if @blog.cover}}has-cover" style="background-image: url({{@blog.cover}}){{else}}no-cover{{/if}}{{/if}}">
+    <h1 class="page-title">{{tag.name}}</h1>
+    <h2 class="page-description">
+        {{#if tag.description}}
+            {{tag.description}}
+        {{else}}
+            A {{pagination.total}}-post collection
+        {{/if}}
+    </h2>
+    {{navigation}}
 </header>
 
-<header class="main-header {{#if @blog.navigation}}has-nav{{/if}}">
-    <h1 class="page-title"><a href="{{@blog.url}}">{{@blog.title}}</a></h1>
-    <h2 class="page-description">{{@blog.description}}</h2>
-</header>
-
-{{navigation}}
 
 {{! The main content area on the homepage }}
 <main class="content post-list" role="main">

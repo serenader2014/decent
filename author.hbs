@@ -7,11 +7,11 @@
 {{#author}}
     <section class="author-profile">
         {{#if cover}}
-            <div class="author-cover" style="background-image: url('{{cover}}')"></div>
+            <div class="author-cover image-bg" style="background-image: url('{{cover}}')"></div>
         {{/if}}
         {{#if image}}
         <figure class="author-image {{#if cover}}has-cover{{/if}}">
-            <div class="img" style="background-image: url({{image}})"><span class="hidden">{{name}}'s Picture</span></div>
+            <div class="img image-bg" style="background-image: url({{image}})"><span class="hidden">{{name}}'s Picture</span></div>
         </figure>
         {{/if}}
         <div class="author-info">

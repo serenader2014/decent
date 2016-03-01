@@ -402,18 +402,18 @@ margin on the iframe, cause it breaks stuff. */
 .post-list .post,
 .pagination,
 .site-footer,
-.single-post h1,
-.single-post h2,
-.single-post h3,
-.single-post h4,
-.single-post h5,
-.single-post h6,
-.single-post p,
-.single-post ul,
-.single-post ol,
-.single-post blockquote,
-.single-post .single-post-header,
-.single-post table,
+.single-post .post-content > h1,
+.single-post .post-content > h2,
+.single-post .post-content > h3,
+.single-post .post-content > h4,
+.single-post .post-content > h5,
+.single-post .post-content > h6,
+.single-post .post-content > p,
+.single-post .post-content > ul,
+.single-post .post-content > ol,
+.single-post .post-content > blockquote,
+.single-post .post-content .single-post-header,
+.single-post .post-content > table,
 .read-next {
     width: 90%;
     max-width: 700px;
@@ -522,9 +522,6 @@ a:hover {
     bottom: 0;
     left: 0;
     right: 0;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
 }
 
 .page-title a {
@@ -649,9 +646,6 @@ a:hover {
     width: 100px;
     height: 100px;
     display: block;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
     border-radius: 50%;
     margin: auto;
 }
@@ -722,7 +716,7 @@ pre code {
 
 :not(pre) > code,
 pre {
-    background: #fafafa;
+    background: rgba(250,250,250,0.8);
     border-top: 1px solid #eeeeee;
     border-bottom: 1px solid #eeeeee;
 }
@@ -805,8 +799,38 @@ pre {
     cursor: help;
 }
 
+.image-bg {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
 
+.detail-page {
+    width: 100%;
+    max-width: none;
+    border-bottom: none;
+    height: 22rem;
+    padding: 10rem 0 0;
+}
 
+.detail-page .nav {
+    margin-top: 40px;
+    margin-bottom: auto;
+}
+
+.detail-page.has-cover h1,
+.detail-page.has-cover h2,
+.detail-page.has-cover a {
+    color: white;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+}
+
+.detail-page.has-cover .nav ul:after,
+.detail-page.has-cover .nav ul:before {
+    background: -moz-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 50%, rgba(255,255,255,0) 100%);
+    background: -webkit-linear-gradient(left, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 50%,rgba(255,255,255,0) 100%);
+    background: linear-gradient(to right, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 50%,rgba(255,255,255,0) 100%);
+}
 
 
 /* ==========================================================================
@@ -814,9 +838,6 @@ pre {
    ========================================================================== */
 .author-cover {
     height: 32rem;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
 }
 
 .author-image {

@@ -6,12 +6,12 @@
 {{! Everything inside the #post tags pulls data from the post }}
 {{#post}}
 
-<header class="main-header {{#if @blog.navigation}}has-nav{{/if}}">
+<header class="main-header image-bg detail-page {{#if image}}has-cover" style="background-image: url({{image}}){{else}}no-cover{{/if}}">
     <h1 class="page-title"><a href="{{@blog.url}}">{{@blog.title}}</a></h1>
     <h2 class="page-description">{{@blog.description}}</h2>
+    {{navigation}}
 </header>
 
-{{navigation}}
 
 <main class="content" role="main">
     <article class="{{post_class}} single-post">
