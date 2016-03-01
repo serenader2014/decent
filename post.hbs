@@ -80,3 +80,18 @@
 </aside>
 
 {{/post}}
+
+<div class="ds-thread" data-thread-key="{{post.id}}" data-title="{{post.title}}" data-url="{{post.url}}"></div>
+<script type="text/javascript">
+    window.addEventListener('load', function () {
+        if (decentThemeConfig && decentThemeConfig.duoshuo) {
+            window.duoshuoQuery = {short_name: decentThemeConfig.duoshuo};
+            var ds = document.createElement('script');
+            ds.type = 'text/javascript';ds.async = true;
+            ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+            ds.charset = 'UTF-8';
+            (document.getElementsByTagName('head')[0]
+             || document.getElementsByTagName('body')[0]).appendChild(ds);
+        }
+    });
+</script>
