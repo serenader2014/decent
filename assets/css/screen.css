@@ -654,9 +654,10 @@ a:hover {
     margin: auto;
 }
 
-.post-content img {
+.post-content img, .single-post .post-title {
     max-width: 700px;
     width: 100%;
+    margin: auto;
 }
 
 .post-content a {
@@ -945,7 +946,10 @@ pre {
    8. Third Party Elements - Embeds from other services
    ========================================================================== */
 
-
+.fluid-width-video-wrapper {
+    max-width: 700px;
+    margin: auto;
+}
 
 /* ==========================================================================
    9. Pagination - Tools to let you flick between pages
