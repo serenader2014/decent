@@ -942,6 +942,11 @@ pre {
     background: linear-gradient(to bottom, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%);
 }
 
+.read-next p {
+    max-height: 150px;
+    overflow: hidden;
+}
+
 /* ==========================================================================
    8. Third Party Elements - Embeds from other services
    ========================================================================== */
