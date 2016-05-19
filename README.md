@@ -72,6 +72,52 @@ Add a `duoshuo` key to the `decentThemeConfig` object, and set its value to your
 </script>
 ```
 
+### How to enable syntax highlighting
+
+[decent](https://github.com/serenader2014/decent) use [Prism.js](http://prismjs.com/index.html) to support the syntax highlighting, it's easy to work with Ghost.
+
+In your markdown content, you just need to specify your code block's language, like this:
+
+
+    ```html
+    <script>
+        var decentThemeConfig = {
+            ga: 'YOUR TRACK ID'
+        };
+    </script>
+    ```
+
+    ```javascript
+    Array.prototype.uniq = function () {
+        var map = {};
+        return this.filter(function (item) {
+            if (map[item]) {
+                return false;
+            } else {
+                map[item] = true;
+                return true;
+            }
+        });
+    };
+    ```
+
+And it's done! 
+
+Notice: In order to decrease the size of the `bundle.min.js` to make the blog load faster, I just include very little languages that support syntax highlighting, they are:
+
+- Markup
+- CSS
+- C-like
+- JavaScript
+
+If you want to add more language support, follow these instructions:
+
+1. Go to [Prism.js download page](http://prismjs.com/download.html), and select the language that you want to enable, and click download, then place the file in `Ghost/content/themes/decent/assets/js`.
+2. Delete the old `bundle.min.js`.
+3. Install [UglifyJS 2](https://github.com/mishoo/UglifyJS2): `npm i -g uglify-js`.
+4. Excute the command in `Ghost/content/themes/decent/assets/js` folder: `uglifyjs jquery-1.12.0.min.js jquery.fitvids.js prism.js index.js -o bundle.min.js`, just be care of the order of the file, jQuery must be in the first order, or you may get the error: `jQuery is not defined`.
+5. It's done! Restart your Ghost and see the result.
+
 ## License
 
 MIT
