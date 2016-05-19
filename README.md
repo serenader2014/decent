@@ -72,6 +72,26 @@ Add a `duoshuo` key to the `decentThemeConfig` object, and set its value to your
 </script>
 ```
 
+### How to add author to a quote
+
+```
+> Donec et nulla vitae sapien aliquet interdum. Suspendisse gravida rutrum sem et blandit. Sed convallis dui eu velit malesuada consequat.
+>
+> -- <cite>Benjamin Franklin</cite>
+```
+![author quote](screenshot/quote-with-author.png)
+
+### How to add caption to an image
+
+```
+<figure>
+![Mountain View](/url/to/image.jpg)
+<figcaption>Phasellus ut molestie odio, vel elementum erat.</figcaption>
+</figure>
+```
+![image with caption](screenshot/picture-with-caption.png)
+
+
 ### How to enable syntax highlighting
 
 [decent](https://github.com/serenader2014/decent) use [Prism.js](http://prismjs.com/index.html) to support the syntax highlighting, it's easy to work with Ghost.
@@ -102,6 +122,7 @@ In your markdown content, you just need to specify your code block's language, l
     ```
 
 And it's done! 
+![code highlighting](screenshot/code-highlighting.png)
 
 Notice: In order to decrease the size of the `bundle.min.js` to make the blog load faster, I just include very little languages that support syntax highlighting, they are:
 

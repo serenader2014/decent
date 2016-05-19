@@ -1,0 +1,113 @@
+﻿@import "variables.less";
+
+a {
+	text-decoration: none;
+	&:hover {
+		text-decoration: underline;
+	}
+}
+.blog-cover {
+	bottom: 0;
+	left: 0;
+	position: fixed;
+	right: 0;
+	top: 0;
+}
+.page-title {
+	a {
+		font-family: Mrs Saint Delafield;
+		font-size: 70px;
+		text-decoration: none;
+	}
+}
+.page-description {
+	font-size: 20px;
+	font-weight: normal;
+}
+.main-header {
+	border-bottom: 1px solid #111111;
+	margin: 0 auto 40px;
+	max-width: @size500px;
+	padding-bottom: 20px;
+	padding-top: 150px;
+	width: @size90percent;
+}
+.main-header.has-nav {
+	border-bottom: 0;
+	margin-bottom: 0;
+}
+.nav {
+	margin-bottom: 50px;
+	max-width: @size500px;
+	padding-bottom: 20px;
+	width: @size90percent;
+	ul {
+		font-size: 0;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+	li {
+		display: inline-block;
+		font-size: 16px;
+		text-transform: uppercase;
+		width: 80px;
+	}
+}
+.nav ul:before, .nav ul:after, .site-footer:before, .author-info:after  {
+	background: -moz-linear-gradient(left, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%);
+	background: -webkit-linear-gradient(left, rgba(0,0,0,0) 0%,rgba(0,0,0,1) 50%,rgba(0,0,0,0) 100%);
+	background: linear-gradient(to right, rgba(0,0,0,0) 0%,rgba(0,0,0,1) 50%,rgba(0,0,0,0) 100%);
+	content: '';
+	display: block;
+	height: 1px;
+	width: 100%;
+}
+.nav-title {
+	display: none;
+}
+.subscribe-button {
+	display: none;
+}
+.post-excerpt {
+	text-align: left;
+	p {
+		margin-bottom: 10px;
+		text-indent: 2em;
+	}
+}
+.post-content {
+	text-align: left;
+}
+.post-meta {
+	font-style: italic;
+	margin-bottom: 20px;
+	a {
+		color: #666666;
+		font-size: 15px;
+		text-decoration: underline;
+	}
+}
+.post {
+	font-size: 16px;
+}
+.content {
+	.short-diver {
+		margin-bottom: 40px;
+		position: relative;
+		&:after {
+			background: #eeeeee;
+			content: '';
+			display: block;
+			height: 4px;
+			margin: 40px auto 0;
+			width: 40px;
+		}
+	}
+}
+.author-thumb {
+	border-radius: 50%;
+	height: 34px;
+	vertical-align: middle;
+	width: 34px;
+}
