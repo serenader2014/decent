@@ -489,35 +489,12 @@ hr {
   max-width: 700px;
 }
 blockquote {
-  margin: 1.75em 0 1.75em -2.2em;
-  padding: 0 1.25em 0 0.8em;
+  margin: 1.75em 0 1.75em -2.4em;
+  padding: 0 0 0 1.75em;
   border-left: 10px solid #85bd6a;
   color: #666665;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  margin: 0 0 1.25em -1.8125em;
-  padding-left: 1.3875em;
-  /*-moz-box-sizing: border-box;
-	box-sizing: border-box;
-	margin: 1.75em 0 1.75em -2.2em;
-	padding: 0 0 0 1.75em;
-	border-left: #4A4A4A 0.4em solid;
-	blockquote {
-		margin-left: 0;
-	}
-	p {
-		margin: 0.8em 0;
-		font-style: italic;
-	}
-	small {
-		display: inline-block;
-		margin: 0.8em 0 0.8em 1.5em;
-		font-size: 0.9em;
-		color: @lighter-grey;
-		&:before {
-			content: "\2014 \00A0";
-		}
-	}*/
 }
 blockquote blockquote {
   margin-left: 0;
@@ -676,84 +653,7 @@ iframe {
   word-wrap: break-word;
   text-align: center;
 }
-.single-post .post-content > h1 {
-  width: 90%;
-  max-width: 700px;
-  margin-left: auto;
-  margin-right: auto;
-  word-wrap: break-word;
-}
-.single-post .post-content > h2 {
-  width: 90%;
-  max-width: 700px;
-  margin-left: auto;
-  margin-right: auto;
-  word-wrap: break-word;
-}
-.single-post .post-content > h3 {
-  width: 90%;
-  max-width: 700px;
-  margin-left: auto;
-  margin-right: auto;
-  word-wrap: break-word;
-}
-.single-post .post-content > h4 {
-  width: 90%;
-  max-width: 700px;
-  margin-left: auto;
-  margin-right: auto;
-  word-wrap: break-word;
-}
-.single-post .post-content > h5 {
-  width: 90%;
-  max-width: 700px;
-  margin-left: auto;
-  margin-right: auto;
-  word-wrap: break-word;
-}
-.single-post .post-content > h6 {
-  width: 90%;
-  max-width: 700px;
-  margin-left: auto;
-  margin-right: auto;
-  word-wrap: break-word;
-}
-.single-post .post-content > p {
-  width: 90%;
-  max-width: 700px;
-  margin-left: auto;
-  margin-right: auto;
-  word-wrap: break-word;
-}
-.single-post .post-content > ul {
-  width: 90%;
-  max-width: 700px;
-  margin-left: auto;
-  margin-right: auto;
-  word-wrap: break-word;
-}
-.single-post .post-content > ol {
-  width: 90%;
-  max-width: 700px;
-  margin-left: auto;
-  margin-right: auto;
-  word-wrap: break-word;
-}
-.single-post .post-content > blockquote {
-  width: 90%;
-  max-width: 700px;
-  margin-left: auto;
-  margin-right: auto;
-  word-wrap: break-word;
-}
-.single-post .post-content .single-post-header {
-  width: 90%;
-  max-width: 700px;
-  margin-left: auto;
-  margin-right: auto;
-  word-wrap: break-word;
-}
-.single-post .post-content > table {
+.single-post .post-content {
   width: 90%;
   max-width: 700px;
   margin-left: auto;
