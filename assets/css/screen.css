@@ -488,6 +488,16 @@ hr {
   width: 90%;
   max-width: 700px;
 }
+figure {
+  margin: 0 0 1.75em 0;
+  position: relative;
+}
+figure figcaption {
+  margin: 0.5em 0 1.25em 0;
+  color: #666665;
+  font-style: italic;
+  line-height: 1.4;
+}
 blockquote {
   margin: 1.75em 0 1.75em -2.4em;
   padding: 0 0 0 1.75em;
@@ -1255,6 +1265,31 @@ pre code {
   }
   h6 {
     font-size: 1.8rem;
+  }
+}
+@media only screen and (min-width: 1161px) {
+  figcaption {
+    position: absolute;
+    top: 0;
+    left: -172px;
+    z-index: 300;
+    width: 150px;
+    text-align: right;
+    font-size: 0.8em;
+  }
+  figcaption:before {
+    display: block;
+    margin-bottom: 10px;
+    margin-left: 75%;
+    width: 25%;
+    border: 1px solid #B3B3B1;
+    content: "";
+  }
+}
+@media only screen and (max-width: 1160px) {
+  figcaption {
+    text-align: center;
+    font-size: 0.75em;
   }
 }
 @media only screen and (max-width: 500px) {
