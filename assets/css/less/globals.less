@@ -198,8 +198,9 @@ figure {
 }
 
 blockquote {
-    margin: 1.75em 0 1.75em -2.4em;
-    padding: 0 0 0 1.75em;
+    margin-top: 1.75em;
+    margin-bottom: 1.75em;
+    padding: 0 40px 0 30px;
     border-left: 10px solid @light-green;
     color: @grey;
     -moz-box-sizing: border-box;
@@ -437,7 +438,7 @@ iframe {
     text-align: center;
 }
 
-.single-post {
+/*.single-post {
     .post-content {
         width: 90%;
         max-width: 700px;
@@ -445,6 +446,33 @@ iframe {
         margin-right: auto;
         word-wrap: break-word;
     }
+}*/
+
+.single-post .post-content > h1,
+.single-post .post-content > h2,
+.single-post .post-content > h3,
+.single-post .post-content > h4,
+.single-post .post-content > h5,
+.single-post .post-content > h6,
+.single-post .post-content > p,
+.single-post .post-content > ul,
+.single-post .post-content > ol,
+.single-post .post-content .single-post-header,
+.single-post .post-content > table,
+.single-post .post-content > figure {
+    width: 90%;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    word-wrap: break-word;
+}
+
+.single-post .post-content > blockquote {
+    width: 90%;
+    max-width: 780px;
+    margin-left: auto;
+    margin-right: auto;
+    word-wrap: break-word;
 }
 
 .read-next {

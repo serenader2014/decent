@@ -1,21 +1,4 @@
-﻿/*
-    0.  Normalize
-    -.  Colors
-    1.  Icons
-    2.  General
-    3.  Utilities
-    4.  General
-    5.  Single Post
-    6.  Tag Archive
-    7.  Read Next
-    8.  Third Party Elements
-    9.  Pagination
-    10.  Footer
-    11. Media Queries (Tablet)
-    12. Media Queries (Mobile)
-    13. Animations
-*/
-html {
+﻿html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
@@ -499,8 +482,9 @@ figure figcaption {
   line-height: 1.4;
 }
 blockquote {
-  margin: 1.75em 0 1.75em -2.4em;
-  padding: 0 0 0 1.75em;
+  margin-top: 1.75em;
+  margin-bottom: 1.75em;
+  padding: 0 40px 0 30px;
   border-left: 10px solid #85bd6a;
   color: #666665;
   -moz-box-sizing: border-box;
@@ -663,9 +647,36 @@ iframe {
   word-wrap: break-word;
   text-align: center;
 }
-.single-post .post-content {
+/*.single-post {
+    .post-content {
+        width: 90%;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+        word-wrap: break-word;
+    }
+}*/
+.single-post .post-content > h1,
+.single-post .post-content > h2,
+.single-post .post-content > h3,
+.single-post .post-content > h4,
+.single-post .post-content > h5,
+.single-post .post-content > h6,
+.single-post .post-content > p,
+.single-post .post-content > ul,
+.single-post .post-content > ol,
+.single-post .post-content .single-post-header,
+.single-post .post-content > table,
+.single-post .post-content > figure {
   width: 90%;
   max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  word-wrap: break-word;
+}
+.single-post .post-content > blockquote {
+  width: 90%;
+  max-width: 780px;
   margin-left: auto;
   margin-right: auto;
   word-wrap: break-word;
@@ -1249,13 +1260,109 @@ pre code {
 .site-footer:before {
   margin-bottom: 20px;
 }
-@media only screen and (max-width: 780px) {
+@-webkit-keyframes "fade-in-down" {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(-10px);
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+}
+@keyframes "fade-in-down" {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(-10px);
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+}
+/* Used to bounce .scroll-down on home page */
+@-webkit-keyframes "bounce" {
+  0%,
+  10%,
+  25%,
+  40%,
+  50% {
+    -webkit-transform: translateY(0) rotate(-90deg);
+    transform: translateY(0) rotate(-90deg);
+  }
+  20% {
+    -webkit-transform: translateY(-10px) rotate(-90deg);
+    transform: translateY(-10px) rotate(-90deg);
+  }
+  30% {
+    -webkit-transform: translateY(-5px) rotate(-90deg);
+    transform: translateY(-5px) rotate(-90deg);
+  }
+}
+@keyframes "bounce" {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    -webkit-transform: translateY(0) rotate(-90deg);
+    transform: translateY(0) rotate(-90deg);
+  }
+  40% {
+    -webkit-transform: translateY(-10px) rotate(-90deg);
+    transform: translateY(-10px) rotate(-90deg);
+  }
+  60% {
+    -webkit-transform: translateY(-5px) rotate(-90deg);
+    transform: translateY(-5px) rotate(-90deg);
+  }
+}
+@media only screen and (min-width: 1161px) {
+  figcaption {
+    position: absolute;
+    top: 0;
+    left: -172px;
+    z-index: 300;
+    width: 150px;
+    text-align: right;
+    font-size: 0.8em;
+  }
+  figcaption:before {
+    display: block;
+    margin-bottom: 10px;
+    margin-left: 75%;
+    width: 25%;
+    border: 1px solid #B3B3B1;
+    content: "";
+  }
+}
+@media only screen and (max-width: 1160px) {
+  figcaption {
+    text-align: center;
+    font-size: 0.75em;
+  }
+}
+@media only screen and (max-width: 880px) {
   .scrollup {
     visibility: hidden;
   }
-  blockquote {
-    margin-left: 0;
+  .single-post .post-content > blockquote {
+    width: 90%;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    word-wrap: break-word;
   }
+  blockquote {
+    padding-right: 0;
+    padding-left: 10px;
+  }
+}
+@media only screen and (max-width: 780px) {
   hr {
     margin: 2.4em 0;
   }
@@ -1283,31 +1390,6 @@ pre code {
   }
   h6 {
     font-size: 1.8rem;
-  }
-}
-@media only screen and (min-width: 1161px) {
-  figcaption {
-    position: absolute;
-    top: 0;
-    left: -172px;
-    z-index: 300;
-    width: 150px;
-    text-align: right;
-    font-size: 0.8em;
-  }
-  figcaption:before {
-    display: block;
-    margin-bottom: 10px;
-    margin-left: 75%;
-    width: 25%;
-    border: 1px solid #B3B3B1;
-    content: "";
-  }
-}
-@media only screen and (max-width: 1160px) {
-  figcaption {
-    text-align: center;
-    font-size: 0.75em;
   }
 }
 @media only screen and (max-width: 500px) {
@@ -1368,66 +1450,5 @@ pre code {
   }
   .read-next a h2 {
     font-size: 2rem;
-  }
-}
-@-webkit-keyframes "fade-in-down" {
-  0% {
-    opacity: 0;
-    -webkit-transform: translateY(-10px);
-    transform: translateY(-10px);
-  }
-  100% {
-    opacity: 1;
-    -webkit-transform: translateY(0);
-    transform: translateY(0);
-  }
-}
-@keyframes "fade-in-down" {
-  0% {
-    opacity: 0;
-    -webkit-transform: translateY(-10px);
-    transform: translateY(-10px);
-  }
-  100% {
-    opacity: 1;
-    -webkit-transform: translateY(0);
-    transform: translateY(0);
-  }
-}
-/* Used to bounce .scroll-down on home page */
-@-webkit-keyframes "bounce" {
-  0%,
-  10%,
-  25%,
-  40%,
-  50% {
-    -webkit-transform: translateY(0) rotate(-90deg);
-    transform: translateY(0) rotate(-90deg);
-  }
-  20% {
-    -webkit-transform: translateY(-10px) rotate(-90deg);
-    transform: translateY(-10px) rotate(-90deg);
-  }
-  30% {
-    -webkit-transform: translateY(-5px) rotate(-90deg);
-    transform: translateY(-5px) rotate(-90deg);
-  }
-}
-@keyframes "bounce" {
-  0%,
-  20%,
-  50%,
-  80%,
-  100% {
-    -webkit-transform: translateY(0) rotate(-90deg);
-    transform: translateY(0) rotate(-90deg);
-  }
-  40% {
-    -webkit-transform: translateY(-10px) rotate(-90deg);
-    transform: translateY(-10px) rotate(-90deg);
-  }
-  60% {
-    -webkit-transform: translateY(-5px) rotate(-90deg);
-    transform: translateY(-5px) rotate(-90deg);
   }
 }
