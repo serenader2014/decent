@@ -17,6 +17,7 @@
     {{! Styles'n'Scripts }}
     <link rel="stylesheet" type="text/css" href="{{asset "css/screen.css"}}" />
     <link href='https://fonts.googleapis.com/css?family=Mrs+Saint+Delafield|Merriweather:300italic,700,300,700italic|Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" />
 
     {{! Ghost outputs important style and meta data with this tag }}
     {{ghost_head}}
@@ -29,6 +30,7 @@
         {{{body}}}
 
         <footer class="site-footer">
+            <a href="#" class="scrollup fa fa-chevron-circle-up" id="scrollup"></a>
             <p class="copyright"><a href="{{@blog.url}}">{{@blog.title}}</a> &copy; {{date format="YYYY"}} | <a href="{{@blog.url}}/rss">RSS Feed</a></p>
             <p class="poweredby">Proudly published with <a href="https://ghost.org">Ghost</a></p>
             <p><a href="">decent Theme</a> made by serenader with <span class="heart">♥</span></p>
@@ -38,6 +40,7 @@
 
 
     <script type="text/javascript" src="{{asset "js/bundle.min.js"}}"></script>
+    <script type="text/javascript" src="https//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
     {{! Ghost outputs important scripts and data with this tag }}
     {{ghost_foot}}
     <script>
@@ -52,6 +55,23 @@
             ga('create', trackId, 'auto');
             ga('send', 'pageview');
         }
+    });
+
+    $(document).ready(function () {
+        var scrollUp = $('.scrollup');
+
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 400) {
+                scrollUp.fadeIn();
+            } else {
+                scrollUp.fadeOut();
+            }
+        });
+
+        scrollUp.click(function () {
+            $("html, body").animate({ scrollTop: 0 }, 600);
+            return false;
+        });
     });
     </script>
 </body>
