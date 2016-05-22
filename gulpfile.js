@@ -3,7 +3,9 @@ var uglify = require('gulp-uglify');
 var sass = require('gulp-sass');
 var concat = require('gulp-concat');
 var autoprefixer = require('gulp-autoprefixer');
+var zip = require('gulp-zip');
 var browserSync = require('browser-sync');
+var pkg = require('./package.json');
 
 var jsFile = [
     './src/script/jquery-1.12.0.min.js',
@@ -48,11 +50,17 @@ gulp.task('dev', function () {
 });
 
 gulp.task('watch', function () {
-    gulp.watch('**/*.hbs').on('change', browserSync.reload);
+    gulp.watch(['*.hbs', 'partials/*.hbs']).on('change', browserSync.reload);
     gulp.watch('./src/style/*.scss', ['sass']);
     gulp.watch('./src/script/*.js', ['js']);
     gulp.watch('./src/fonts/**/*', ['font']);
     gulp.watch('./src/assets/**/*', ['photoswipe']);
+});
+
+gulp.task('zip', function () {
+    return gulp.src(['**/*', '!./node_modules/**/*', '!./screenshot/**/*'])
+        .pipe(zip('decent-v' + pkg.version + '.zip'))
+        .pipe(gulp.dest('./'));
 });
 
 gulp.task('default', ['sass', 'js', 'dev', 'photoswipe', 'font', 'watch']);

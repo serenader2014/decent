@@ -165,6 +165,17 @@
     margin-bottom: 20px;
 }
 
+.go-to-top {
+    background-image: url('../assets/go-to-top.png');
+    width: 40px;
+    height: 40px;
+    position: fixed;
+    bottom: 30px;
+    right: 100px;
+    border: none;
+    display: none;
+}
+
 
 // make the content center and given a width
 .post-list .post,
