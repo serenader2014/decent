@@ -171,7 +171,9 @@ If you want to add more language support, follow these instructions:
 
 ### How to add author to quote
 
-Just add a `<cite></cite>` tag below your quote.
+Just add a `<cite></cite>` tag below your quote. 
+
+Demo: [Post page demostration](https://blog.serenader.me/ghost-theme-demostration-decent-2/#thestandardloremipsumpassageusedsincethe1500s)
 
 ```markdown
 > Our destiny offers not the cup of despair, but the chalice of opportunity. So let us seize it, not in fear, but in gladness.
@@ -183,7 +185,9 @@ Just add a `<cite></cite>` tag below your quote.
 
 ### How to add image with caption
 
-Wrap your image with a `<figure></figure>` tag, and place your caption in a `<figcaption></figcaption>` tag.
+Wrap your image with a `<figure></figure>` tag, and place your caption in a `<figcaption></figcaption>` tag. 
+
+Demo: [Post page demostration](https://blog.serenader.me/ghost-theme-demostration-decent-2/#section11032ofdefinibusbonorumetmalorumwrittenbyciceroin45bc)
 
 ```markdown
 <figure>
@@ -196,7 +200,9 @@ Wrap your image with a `<figure></figure>` tag, and place your caption in a `<fi
 
 ### How to add image with alignment
 
-Add a hash that contain alignment in your image's url.
+Add a hash that contain alignment in your image's url. 
+
+Demo: [Post page demostration](https://blog.serenader.me/ghost-theme-demostration-decent-2/#section11032ofdefinibusbonorumetmalorumwrittenbyciceroin45bc)
 
 ```markdown
 ![](/content/images/2016/05/untitled-9.gif#right)
@@ -207,7 +213,9 @@ Add a hash that contain alignment in your image's url.
 
 ### How to add image with caption and with alignment
 
-Simply add a class `left` or `right` to your `<figure></figure>` tag.
+Simply add a class `left` or `right` to your `<figure></figure>` tag. 
+
+Demo: [Post page demostration](https://blog.serenader.me/ghost-theme-demostration-decent-2/#section11033ofdefinibusbonorumetmalorumwrittenbyciceroin45bc)
 
 ```markdown
 <figure class="left">
@@ -220,7 +228,9 @@ Simply add a class `left` or `right` to your `<figure></figure>` tag.
 
 ### How to add fullscreen image
 
-Wrap your image with an element that has a `large` class.
+Wrap your image with an element that has a `large` class. 
+
+Demo: [Post page demostration](https://blog.serenader.me/ghost-theme-demostration-decent-2/)
 
 ```markdown
 <div class="large">
@@ -230,7 +240,9 @@ Wrap your image with an element that has a `large` class.
 
 ### How to add fullscreen image with caption
 
-Give your `<figure></figure>` a `large` class.
+Give your `<figure></figure>` a `large` class. 
+
+Demo: [Post page demostration](https://blog.serenader.me/ghost-theme-demostration-decent-2/#1914translationbyhrackham)
 
 ```markdown
 <figure class="large">
@@ -241,7 +253,9 @@ Give your `<figure></figure>` a `large` class.
 
 ### How to add image gallery(album)
 
-Place your images within an element that has a `album` class.
+Place your images within an element that has a `album` class. 
+
+Demo: [Post page demostration](https://blog.serenader.me/ghost-theme-demostration-decent-2/#imagegallery)
 
 ```markdown
 <div class="album">
@@ -262,7 +276,9 @@ Place your images within an element that has a `album` class.
 
 ### How to add image gallery(album) with caption
 
-Just like image gallery, place your `<figure></figure>` tags instead of images in an element that has a `album` class.
+Just like image gallery, place your `<figure></figure>` tags instead of images in an element that has a `album` class. 
+
+Demo: [Post page demostration](https://blog.serenader.me/ghost-theme-demostration-decent-2/#imagegallerywithcaption)
 
 ```markdown
 <div class="album">
