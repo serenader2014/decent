@@ -1,0 +1,47 @@
+{{!-- disqus 评论 --}}
+<div id="disqus_thread"></div>
+
+{{!-- 多说评论 --}}
+<div class="ds-thread" data-thread-key="{{post.id}}" data-title="{{post.title}}" data-url="{{post.url}}"></div>
+
+<script type="text/javascript">
+    window.addEventListener('load', function () {
+        var wrapper = document.querySelector('.site-wrapper');
+        var footer = document.querySelector('.site-footer');
+        var windowHeight = window.innerHeight;
+        var loadingComment = false;
+        window.addEventListener('scroll', function () {
+            if (loadingComment) {return;}
+            var scrollTop = document.body.scrollTop;
+            var footerTop = footer.offsetTop;
+
+
+            if (scrollTop > footerTop - 2*windowHeight) {
+                loadingComment = true;
+                loadComment();
+            }
+        });
+
+        function loadComment() {
+            if (decentThemeConfig && decentThemeConfig.duoshuo) {
+                window.duoshuoQuery = {short_name: decentThemeConfig.duoshuo};
+                var ds = document.createElement('script');
+                ds.type = 'text/javascript';ds.async = true;
+                ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                ds.charset = 'UTF-8';
+                (document.getElementsByTagName('head')[0]
+                 || document.getElementsByTagName('body')[0]).appendChild(ds);
+            }
+            if (decentThemeConfig && decentThemeConfig.disqus) {
+                var disqus_config = function () {
+                    this.page.url = '{{post.url}}';
+                    this.page.identifier = '{{post.id}}';
+                };
+                var d = document, s = d.createElement('script');
+                s.src = '//' + decentThemeConfig.disqus + '.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            }
+        }
+    });
+</script>

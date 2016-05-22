@@ -4,12 +4,45 @@ A Ghost blog theme, modified from [Casper](https://github.com/TryGhost/Casper). 
 
 Demo: [my blog](https://blog.serenader.me)
 
+# ToC
+
+- [Features](#features)
+- [Screenshot](#screenshot)
+    - [Home page](#home-page)
+    - [Post page](#post-page)
+    - [Author page](#author-page)
+    - [Tag page](#tag-page)
+- [Installation](#installation)
+- [Configuration](#configuration)
+    - [Google Analytics service configuration](#google-analytics-service-configuration)
+    - [Duoshuo comment service configuration](#duoshuo-comment-service-configuration)
+    - [Disqus comment service configuration](#disqus-comment-service-configuration)
+    - [How to enable syntax highlighting](#how-to-enable-syntax-highlighting)
+- [Writing markdown](#writing-markdown)
+    - [How to add author to quote](#how-to-add-author-to-quote)
+    - [How to add image with caption](#how-to-add-image-with-caption)
+    - [How to add image with alignment](#how-to-add-image-with-alignment)
+    - [How to add image with caption and with alignment](#how-to-add-image-with-caption-and-with-alignment)
+    - [How to add fullscreen image](#how-to-add-fullscreen-image)
+    - [How to add fullscreen image with caption](#how-to-add-fullscreen-image-with-caption)
+    - [How to add image gallery(album)](#how-to-add-image-galleryalbum)
+    - [How to add image gallery(album) with caption](#how-to-add-image-galleryalbum-with-caption)
+- [Development](#development)
+- [Thanks to](#thanks-to)
+- [License](#license)
+
 ## Features
 
 - Minimalist design, less is more.
-- Code highlighting.
+- Syntax highlighting.
 - Responsive deign.
-- Optional Google Analytics and Duoshuo comment service is provided.
+- Quote with author supported.
+- Image caption supported.
+- Image alignment supported.
+- Image gallery supported.
+- Google Analytics service.
+- Duoshuo comment service.
+- Disqus comment service.
 - All Optional services can be configured in the Ghost admin page, you don't have to manually modify the code.
 
 ## Screenshot
@@ -32,7 +65,7 @@ Demo: [my blog](https://blog.serenader.me)
 
 ## Installation
 
-1. Clone this project to the Ghost's theme folder: `content/themes`
+1. Download this theme from [Github release page](https://github.com/serenader2014/decent/releases), and extract the files to the Ghost's theme folder: `content/themes`.
 2. Restart Ghost: `pm2 restart ghost` (assume you're using pm2)
 3. In the Ghost admin page, navigate to `General` section, change the theme to `decent`
 4. In the Ghost admin page, navigate to `Code Injection` section, add some configurations, for example, add Google Analytics service or Duoshuo comment service.
@@ -71,6 +104,23 @@ Add a `duoshuo` key to the `decentThemeConfig` object, and set its value to your
     };
 </script>
 ```
+
+### Disqus comment service configuration
+
+Add a `disqus` key to the `decentThemeConfig` object, and set its value to your disqus service's short name.
+
+```html
+<script>
+    var decentThemeConfig = {
+        disqus: 'YOUR DISQUS SHORT NAME'
+    };
+</script>
+```
+
+
+> #### What is my disqus short name?
+> 
+> When you're setting up your disqus account, it will ask you to create a unique Disqus URL, and this URL will also become your site's "shortname". For example, my Disqus URL is: `https://serenader.disqus.com`, so my shortname is 'serenader'.
 
 ### How to enable syntax highlighting
 
@@ -114,9 +164,164 @@ If you want to add more language support, follow these instructions:
 
 1. Go to [Prism.js download page](http://prismjs.com/download.html), and select the language that you want to enable, and click download, then place the file in `Ghost/content/themes/decent/assets/js`.
 2. Delete the old `bundle.min.js`.
-3. Install [UglifyJS 2](https://github.com/mishoo/UglifyJS2): `npm i -g uglify-js`.
-4. Excute the command in `Ghost/content/themes/decent/assets/js` folder: `uglifyjs jquery-1.12.0.min.js jquery.fitvids.js prism.js index.js -o bundle.min.js`, just be care of the order of the file, jQuery must be in the first order, or you may get the error: `jQuery is not defined`.
-5. It's done! Restart your Ghost and see the result.
+3. In the decent theme folder, run `npm install`, and run `gulp js`.
+4. It's done! Restart your Ghost and see the result.
+
+## Writing markdown
+
+### How to add author to quote
+
+Just add a `<cite></cite>` tag below your quote.
+
+```markdown
+> Our destiny offers not the cup of despair, but the chalice of opportunity. So let us seize it, not in fear, but in gladness.
+> 
+> <cite>——R.M. Nixon</cite>
+```
+
+![quot with cite](screenshot/quote-with-cite.png)
+
+### How to add image with caption
+
+Wrap your image with a `<figure></figure>` tag, and place your caption in a `<figcaption></figcaption>` tag.
+
+```markdown
+<figure>
+![](/content/images/2016/05/sgblr5yvxim-jason-chen.jpg)
+<figcaption>This is figcaption. A beautiful picture.</figcaption>
+</figure>
+```
+
+![image with caption](screenshot/image-with-caption.png)
+
+### How to add image with alignment
+
+Add a hash that contain alignment in your image's url.
+
+```markdown
+![](/content/images/2016/05/untitled-9.gif#right)
+![](/content/images/2016/05/untitled-9.gif#left)
+```
+
+![image-with-alignment](screenshot/image-with-alignment.png)
+
+### How to add image with caption and with alignment
+
+Simply add a class `left` or `right` to your `<figure></figure>` tag.
+
+```markdown
+<figure class="left">
+![](/content/images/2016/05/sgblr5yvxim-jason-chen.jpg)
+<figcaption>hello world!</figcaption>
+</figure>
+```
+
+![figure-with-alignment](screenshot/figure-with-alignment.png)
+
+### How to add fullscreen image
+
+Wrap your image with an element that has a `large` class.
+
+```markdown
+<div class="large">
+![](/content/images/2016/05/DSC01093.JPG)
+</div>
+```
+
+### How to add fullscreen image with caption
+
+Give your `<figure></figure>` a `large` class.
+
+```markdown
+<figure class="large">
+![](/content/images/2016/05/DSC01135-1.jpg)
+<figcaption>wow so handsome</figcaption>
+</figure>
+```
+
+### How to add image gallery(album)
+
+Place your images within an element that has a `album` class.
+
+```markdown
+<div class="album">
+![](/content/images/2016/05/Screenshot_2016-04-09-19-16-28.png)
+![](/content/images/2016/05/Screenshot_2016-04-02-00-48-25.png)
+![](/content/images/2016/05/Screenshot_2016-04-01-12-03-36.png)
+![](/content/images/2016/05/Screenshot_2016-04-01-12-01-33.png)
+![](/content/images/2016/05/Screenshot_2016-03-24-12-13-58.png)
+![](/content/images/2016/05/Screenshot_2016-03-17-22-50-05.png)
+![](/content/images/2016/05/Screenshot_2016-03-17-21-27-58.png)
+![](/content/images/2016/05/Screenshot_2016-03-17-17-16-07.png)
+![](/content/images/2016/05/Screenshot_2016-02-22-23-54-43.png)
+![](/content/images/2016/05/Screenshot_2015-12-24-09-24-12.png)
+</div>
+```
+
+![image album](screenshot/image-album.png)
+
+### How to add image gallery(album) with caption
+
+Just like image gallery, place your `<figure></figure>` tags instead of images in an element that has a `album` class.
+
+```markdown
+<div class="album">
+<figure>
+![](/content/images/2016/05/abta_gq74fs-matthew-wiebe.jpg)
+<figcaption>wow so handsome</figcaption>
+</figure>
+
+<figure>
+![](/content/images/2016/05/ocjujqqvczc-brandon-day.jpg)
+<figcaption>wow so handsome</figcaption>
+</figure>
+
+<figure>
+![](/content/images/2016/05/sgblr5yvxim-jason-chen-1.jpg)
+<figcaption>wow so handsome</figcaption>
+</figure>
+
+<figure>
+![](/content/images/2016/05/vbk7wuwczxk-maher-aridi.jpg)
+<figcaption>wow so handsome</figcaption>
+</figure>
+
+<figure>
+![](/content/images/2016/05/zfnk_btlapo-ismael-nieto.jpg)
+<figcaption>wow so handsome</figcaption>
+</figure>
+
+<figure>
+![](/content/images/2016/05/3wbxamuj7sg-roksolana-zasiadko.jpg)
+<figcaption>wow so handsome</figcaption>
+</figure>
+
+<figure>
+![](/content/images/2016/05/fo5dtm6id1y-mr-cup-fabien-barral.jpg)
+<figcaption>wow so handsome</figcaption>
+</figure>
+</div>
+```
+
+![image with caption gallery](screenshot/image-with-caption-album.png)
+
+## Development
+
+- Fork this project, and clone it to Ghost theme's folder.
+- Run `npm install` to install dependencies.
+- Run `gulp` to start development(make sure your Ghost is running, and you have set decent as your Ghost's theme.)
+
+[Gulp](http://gulpjs.com) will watch your files' changes, and automatically generate the bundle file, like `screen.css` and `bundle.min.js`. So you don't need to build these files by yourself. And when the bundle file changes, the browser will automatically reload itself, to see the latest changes.
+
+## Thanks to
+
+- [Ghost](https://ghost.org)
+- [Casper](https://github.com/TryGhost/Casper)
+- [Aquila](https://github.com/lxndio/Aquila)
+- [Prism.js](http://prismjs.com/index.html)
+- [Photoswipe](http://photoswipe.com/)
+- [Duoshuo](http://duoshuo.com/)
+- [Disqus](https://disqus.com/)
 
 ## License
 
