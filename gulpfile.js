@@ -35,6 +35,11 @@ gulp.task('photoswipe', function () {
         .pipe(gulp.dest('./assets/assets/'));
 });
 
+gulp.task('font', function () {
+    return gulp.src('./src/fonts/**/*')
+        .pipe(gulp.dest('./assets/fonts/'));
+});
+
 gulp.task('dev', function () {
     browserSync.init({
         proxy: 'localhost:2368',
@@ -43,9 +48,11 @@ gulp.task('dev', function () {
 });
 
 gulp.task('watch', function () {
-    gulp.watch('*.hbs').on('change', browserSync.reload);
+    gulp.watch('**/*.hbs').on('change', browserSync.reload);
     gulp.watch('./src/style/*.scss', ['sass']);
     gulp.watch('./src/script/*.js', ['js']);
+    gulp.watch('./src/fonts/**/*', ['font']);
+    gulp.watch('./src/assets/**/*', ['photoswipe']);
 });
 
-gulp.task('default', ['sass', 'js', 'dev', 'photoswipe', 'watch']);
+gulp.task('default', ['sass', 'js', 'dev', 'photoswipe', 'font', 'watch']);
