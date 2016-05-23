@@ -153,12 +153,44 @@ In your markdown content, you just need to specify your code block's language, l
 
 And it's done! 
 
-Notice: In order to decrease the size of the `bundle.min.js` to make the blog load faster, I just include very little languages that support syntax highlighting, they are:
+Default supported languages are:
 
 - Markup
 - CSS
 - C-like
 - JavaScript
+- Bash
+- C
+- C#
+- C++
+- CoffeeScript
+- CSS Extras
+- Docker
+- Elixir
+- Erlang
+- Git
+- Go
+- Handlebars
+- HTTP
+- Jade
+- JSON
+- Less
+- Makefile
+- Markdown
+- Nginx
+- Objective-C
+- Perl
+- PHP
+- PHP Extras
+- Powershell
+- Python
+- React JSX
+- Ruby
+- Rust
+- Sass(Sass/Scss)
+- Swift
+- TypeScript
+- Vim
 
 If you want to add more language support, follow these instructions:
 

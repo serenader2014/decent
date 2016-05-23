@@ -1,21 +1,32 @@
 /* globals jQuery, document */
 (function ($, undefined) {
     var $document = $(document);
-
     $document.ready(function () {
-
         var $postContent = $('.post-content');
         var postTitleLink = $('.post-title a');
         var container = $('.content');
         var $album = $('.album');
         var pswpElement = $('.pswp').get(0);    
+        var goToTop = $('.go-to-top');
+        var win = $(window);
+        var windowHeight = win.height();
+        var timeoutHandler;
+
+        /*
+            Fix video size.
+         */
         $postContent.fitVids();
 
+
+        /*
+            Image gallery
+         */
         $('.post-content img').each(function () {
             var src = $(this).attr('src');
             var self = $(this);
             var newImg = new Image();
             newImg.addEventListener('load', function () {
+                // save all the image's original size, will use in photoswipe
                 self.data('width', newImg.width).data('height', newImg.height);
             });
             newImg.src = src;
@@ -91,5 +102,50 @@
             var gallery = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, items, options);
             gallery.init();
         });
+
+
+        /*
+            Scroll To Top button
+         */
+        win.on('scroll', function () {
+            var top = $(this).scrollTop();
+            if (top > windowHeight/2 && !goToTop.is(':visible')) {
+                goToTop.fadeIn();
+            }
+            if (top <= windowHeight/2 && goToTop.is(':visible')) {
+                goToTop.fadeOut();
+            }
+            if (timeoutHandler) {
+                clearTimeout(timeoutHandler);
+            }
+
+            goToTop.removeClass('less-opacity');
+            timeoutHandler = setTimeout(function () {
+                goToTop.addClass('less-opacity');
+            }, 2000);
+        });
+        goToTop.on('click', function () {
+            $('body, html').animate({scrollTop: 0});
+        });
+
+
+        /*
+            GA service
+         */
+        // make sure `decentThemeConfig` is exist.
+        if (typeof decentThemeConfig === 'undefined') {
+            window.decentThemeConfig = {};
+        }
+
+        if (decentThemeConfig.ga) {
+            var trackId = decentThemeConfig.ga;
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+            ga('create', trackId, 'auto');
+            ga('send', 'pageview');
+        }
     });
 })(jQuery);

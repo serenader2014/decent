@@ -10,12 +10,14 @@
         var footer = document.querySelector('.site-footer');
         var windowHeight = window.innerHeight;
         var loadingComment = false;
+
+        if (typeof decentThemeConfig === 'undefined') {
+            window.decentThemeConfig = {};
+        }
         window.addEventListener('scroll', function () {
             if (loadingComment) {return;}
             var scrollTop = document.body.scrollTop;
             var footerTop = footer.offsetTop;
-
-
             if (scrollTop > footerTop - 2*windowHeight) {
                 loadingComment = true;
                 loadComment();

@@ -21,3 +21,4 @@ projectFilesBackup
 
 .DS_Store
 assets
+!src/assets
