@@ -33,7 +33,20 @@
         font-size: 5rem;
     }
 
+    .author-meta {
+        border-bottom: none;
+        border-top: none;
+    }
+
+    .author-bio {
+        color: #666;
+        text-shadow: none;
+        font-size: 1.4rem;
+        max-width: 500px;
+    }
+
     .large {
+        margin: 4rem 0;
         img {
             max-width: none;            
         }

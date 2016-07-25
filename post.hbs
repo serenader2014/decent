@@ -27,6 +27,9 @@
             {{content}}
         </section>
 
+        {{> "comment"}}
+
+
         <footer class="post-footer">
 
         {{! Everything inside the #author tags pulls data from the author }}
@@ -39,16 +42,34 @@
             {{/if}}
 
             <section class="author short-diver">
-                <h4><a href="{{url}}">{{name}}</a></h4>
+                <h4 class="author-name"><a href="{{url}}">{{name}}</a></h4>
 
                 {{#if bio}}
-                    <p>{{bio}}</p>
+                    <p class="author-bio">{{bio}}</p>
                 {{else}}
                     <p>Read <a href="{{url}}">more posts</a> by this author.</p>
                 {{/if}}
                 <div class="author-meta">
-                    {{#if location}}<span class="author-location icon-location">{{location}}</span>{{/if}}
-                    {{#if website}}<span class="author-link icon-link"><a href="{{website}}">{{website}}</a></span>{{/if}}
+                    {{#if location}}
+                        <li class="author-location">
+                            <a href="https://www.google.com/maps/search/{{location}}" class="icon-location" title="{{location}}"></a>
+                        </li>
+                    {{/if}}
+                    {{#if website}}
+                        <li class="author-link">
+                            <a class="icon-link" href="{{website}}" title="{{website}}"></a>
+                        </li>
+                    {{/if}}
+                    {{#if twitter}}
+                        <li class="author-twitter">
+                            <a class="icon-twitter" href="{{twitter_url}}" title="{{twitter}}"></a>
+                        </li>
+                    {{/if}}
+                    {{#if facebook}}
+                        <li class="author-facebook">
+                            <a class="icon-facebook" href="{{facebook_url}}" title="{{facebook}}"></a>
+                        </li>
+                    {{/if}}
                 </div>
             </section>
 
@@ -61,22 +82,16 @@
 </main>
 
 <aside class="read-next">
-    <h2 class="title">Read More</h2>
-    {{#next_post}}
-    <a class="read-next-story" href="{{url}}">
-        <section class="post">
-            <h2 title="{{title}}">{{title}}</h2>
-            <p>{{excerpt words="19"}}&hellip;</p>
-            <div class="white-mask"></div>
-        </section>
-    </a>{{/next_post}}{{#prev_post}}<a class="read-next-story prev" href="{{url}}">
-        <section class="post">
-            <h2 title="{{title}}">{{title}}</h2>
-            <p>{{excerpt words="19"}}&hellip;</p>
-            <div class="white-mask"></div>
-        </section>
+    {{#prev_post}}<a class="read-next-story prev" href="{{url}}">
+        {{!-- <i aria-hidden="true">←</i> --}}
+        {{title}}
     </a>
     {{/prev_post}}
+    {{#next_post}}
+    <a class="read-next-story next" href="{{url}}">
+        {{title}}
+        {{!-- <i aria-hidden="true">→</i> --}}
+    </a>{{/next_post}}
 </aside>
 
 {{/post}}
@@ -118,5 +133,3 @@
         </div>
     </div>
 </div>
-
-{{> "comment"}}
