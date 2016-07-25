@@ -27,9 +27,6 @@
             {{content}}
         </section>
 
-        {{> "comment"}}
-
-
         <footer class="post-footer">
 
         {{! Everything inside the #author tags pulls data from the author }}
@@ -80,6 +77,8 @@
 
     </article>
 </main>
+
+{{> "comment"}}
 
 <aside class="read-next">
     {{#prev_post}}<a class="read-next-story prev" href="{{url}}">
@@ -133,3 +132,4 @@
         </div>
     </div>
 </div>
+
