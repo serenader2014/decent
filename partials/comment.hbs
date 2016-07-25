@@ -1,31 +1,24 @@
 {{!-- disqus 评论 --}}
-<div id="disqus_thread"></div>
+<div id="disqus_thread" class="comment-container">Comments is loading...</div>
 
 {{!-- 多说评论 --}}
-<div class="ds-thread" data-thread-key="{{post.id}}" data-title="{{post.title}}" data-url="{{post.url}}"></div>
+<div class="ds-thread comment-container" data-thread-key="{{post.id}}" data-title="{{post.title}}" data-url="{{post.url}}">Comments is loading...</div>
+
+<div class="load-comments">
+    <button>Load Comments</button>
+</div>
 
 <script type="text/javascript">
     window.addEventListener('load', function () {
-        var wrapper = document.querySelector('.site-wrapper');
-        var footer = document.querySelector('.site-footer');
-        var windowHeight = window.innerHeight;
-        var loadingComment = false;
+        var loadCommentBtn = $('.load-comments');
 
-        if (typeof decentThemeConfig === 'undefined') {
-            window.decentThemeConfig = {};
-        }
-        window.addEventListener('scroll', function () {
-            if (loadingComment) {return;}
-            var scrollTop = document.body.scrollTop;
-            var footerTop = footer.offsetTop;
-            if (scrollTop > footerTop - 2*windowHeight) {
-                loadingComment = true;
-                loadComment();
-            }
+        loadCommentBtn.on('click', function() {
+            loadComment();
+            $(this).hide();
         });
-
         function loadComment() {
             if (decentThemeConfig && decentThemeConfig.duoshuo) {
+                $('.ds-thread').show();
                 window.duoshuoQuery = {short_name: decentThemeConfig.duoshuo};
                 var ds = document.createElement('script');
                 ds.type = 'text/javascript';ds.async = true;
@@ -35,6 +28,7 @@
                  || document.getElementsByTagName('body')[0]).appendChild(ds);
             }
             if (decentThemeConfig && decentThemeConfig.disqus) {
+                $('#disqus_thread').show();
                 var disqus_config = function () {
                     this.page.url = '{{post.url}}';
                     this.page.identifier = '{{post.id}}';
