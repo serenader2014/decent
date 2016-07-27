@@ -261,3 +261,12 @@
         font-size: 1.4rem;
     }
 }
+
+.post-list {
+    .featured {
+        .post-header {
+            padding: 0 10px;
+            border-left: 5px solid #3A4145;
+        }
+    }
+}
