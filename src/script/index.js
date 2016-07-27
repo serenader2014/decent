@@ -108,6 +108,9 @@
             Scroll To Top button
          */
         win.on('scroll', function () {
+            if ($(window).width() <= 500) {
+                return;
+            }
             var top = $(this).scrollTop();
             if (top > windowHeight/2 && !goToTop.is(':visible')) {
                 goToTop.fadeIn();

@@ -234,6 +234,12 @@
     word-wrap: break-word;
 }
 
+.single-post {
+    iframe {
+        min-height: 300px;
+    }
+}
+
 .load-comments {
     margin: 60px auto;
     button {

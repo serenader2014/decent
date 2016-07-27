@@ -44,18 +44,6 @@
         font-size: 2.5rem;
     }
 
-    .read-next a {
-        display: block;
-        width: 100%;
-        box-sizing: border-box;
-        padding-right: 0;
-        padding-left: 0;
-    }
-
-    .read-next a h2 {
-        font-size: 2rem;
-    }
-
     .single-post {
         img[src*='#right'], img[src*='#left'] {
             margin: 0;
@@ -79,5 +67,21 @@
     .go-to-top {
         right: 10px;
         display: none !important;
+    }
+
+    .author-profile {
+        margin-bottom: 8rem;
+    }
+
+    .author-info {
+        padding: 3rem 0 1rem;
+
+        .author-title {
+            font-size: 2.8rem;
+        }
+
+        .author-bio {
+            font-size: 1.5rem;
+        }
     }
 }
