@@ -6,6 +6,7 @@
 {{! Everything inside the #author tags pulls data from the author }}
 {{#author}}
     <section class="author-profile" {{#if cover}}style="background-image:url('{{cover}}')"{{/if}}>
+        <a href="{{@blog.url}}" class="go-home-page" style="background-image:url({{#if @blog.logo}}{{@blog.logo}}{{else}}asdf{{/if}}")></a>
         <div class="author-info">
             <figure class="author-image {{#if cover}}has-cover{{/if}}">
                 <div class="img image-bg" style="background-image: url({{image}})"><span class="hidden">{{name}}'s Picture</span></div>
