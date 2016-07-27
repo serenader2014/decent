@@ -4,7 +4,7 @@
 
 {{! The big featured header }}
 <header class="main-header detail-page image-bg {{#if @blog.cover}}has-cover" style="background-image: url({{@blog.cover}}){{else}}no-cover{{/if}}">
-    <a href="{{@blog.url}}" class="go-home-page" style="background-image:url({{#if @blog.logo}}{{@blog.logo}}{{else}}asdf{{/if}}")></a>
+    <a href="{{@blog.url}}" class="go-home-page" style="background-image:url({{#if @blog.logo}}{{@blog.logo}}{{else}}{{asset "/assets/go-home.png"}}{{/if}}")></a>
 
     <h1 class="page-title"><a href="{{@blog.url}}">{{@blog.title}}</a></h1>
     <h2 class="page-description">{{@blog.description}}</h2>
