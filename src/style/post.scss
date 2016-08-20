@@ -187,6 +187,16 @@
             }
         }
     }
+
+    .center {
+        text-align: center;
+        margin: 20px auto;
+
+        img {
+            width: auto;
+            max-width: 100%;
+        }
+    }
 }
 
 .post-content {
