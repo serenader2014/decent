@@ -7,37 +7,3 @@
 <div class="load-comments">
     <button>Load Comments</button>
 </div>
-
-<script type="text/javascript">
-    window.addEventListener('load', function () {
-        var loadCommentBtn = $('.load-comments');
-
-        loadCommentBtn.on('click', function() {
-            loadComment();
-            $(this).hide();
-        });
-        function loadComment() {
-            if (decentThemeConfig && decentThemeConfig.duoshuo) {
-                $('.ds-thread').show();
-                window.duoshuoQuery = {short_name: decentThemeConfig.duoshuo};
-                var ds = document.createElement('script');
-                ds.type = 'text/javascript';ds.async = true;
-                ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-                ds.charset = 'UTF-8';
-                (document.getElementsByTagName('head')[0]
-                 || document.getElementsByTagName('body')[0]).appendChild(ds);
-            }
-            if (decentThemeConfig && decentThemeConfig.disqus) {
-                $('#disqus_thread').show();
-                var disqus_config = function () {
-                    this.page.url = '{{post.url}}';
-                    this.page.identifier = '{{post.id}}';
-                };
-                var d = document, s = d.createElement('script');
-                s.src = '//' + decentThemeConfig.disqus + '.disqus.com/embed.js';
-                s.setAttribute('data-timestamp', +new Date());
-                (d.head || d.body).appendChild(s);
-            }
-        }
-    });
-</script>
