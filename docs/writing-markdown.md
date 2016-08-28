@@ -1,5 +1,45 @@
 ## Writing markdown
 
+This theme support some cool styles to let you write a more elegent and rich-style article, such as *preface*, *image gallery* and so on. Basically it just need you to wrap your content in a HTML tag, like this:
+
+```html
+<div class="preface">
+    Your preface here
+</div>
+```
+
+So there is no magic. But you should also know that, markdown parser won't parse the markdown syntax inside the HTML tag, except the image syntax. So if you're writing something like this:
+
+```markdown
+<div class="preface">
+This is *some* preface.
+</div>
+```
+
+The result will just print `*some*`, instead of transform it to italic style.
+
+### How to add preface
+
+Wrap your preface in a `div` tag with `preface` class.
+
+```markdown
+<div class="preface">
+Here is your preface...
+</div>
+```
+
+### How to add tip
+
+Wrap your tips content in a `div` tag with `tip` class.
+
+```markdown
+<div class="tip">
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</div>
+```
+
+![tip](../screenshot/tip.jpg)
+
 ### How to add author to quote
 
 Just add a `<cite></cite>` tag below your quote. 
