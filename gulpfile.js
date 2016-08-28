@@ -11,6 +11,7 @@ var jsFile = [
     './src/script/jquery-1.12.0.min.js',
     './src/script/jquery.fitvids.js',
     './src/script/progress.min.js',
+    './src/script/history.min.js',
     './src/script/prism.js',
     './src/script/photoswipe.js',
     './src/script/photoswipe-ui-default.js',

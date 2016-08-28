@@ -106,12 +106,12 @@
     // use ajax to loage webpage instead of a normal page request.
     function loadPageWithAjax() {
         // listen to the history change, load the target page
-        $window.on('popstate', function (e) {
-            var targetUrl = e.originalEvent.state;
-            if (targetUrl) {
-                loadHTML(targetUrl);
+        var history = History.createHistory();
+        history.listen(function (location) {
+            if (location.action === 'POP') {
+                loadHTML(location.pathname);
             }
-        });
+        })
 
         // hook all the internal link, when user click the link,
         // perform an ajax request, and prevent the default behavior
@@ -119,7 +119,9 @@
             if (this.hostname !== location.hostname) return;
             e.preventDefault();
             var pathname = this.pathname;
-            history.pushState(pathname, pathname, pathname);
+            history.push({
+                pathname: pathname
+            })
             loadHTML(pathname);
         });
     }
