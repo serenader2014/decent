@@ -166,16 +166,19 @@ mark {
 
 kbd {
     display: inline-block;
-    margin-bottom: 0.4em;
-    padding: 1px 8px;
-    border: $color-kbd-bd 1px solid;
+    margin: 0 .1em;
+    padding: .1em .6em;
+    font-family: Arial,"Helvetica Neue",Helvetica,sans-serif;
+    font-size: 12px;
+    line-height: 1.4;
     color: $color-kbd-color;
-    text-shadow: $color-white 0 1px 0;
-    font-size: 0.9em;
-    font-weight: 700;
-    background: $color-kbd-bg;
-    border-radius: 4px;
-    box-shadow: 0 1px 0 rgba($color-black, 0.2), 0 1px 0 0 $color-white inset;
+    text-shadow: 0 1px 0 #FFF;
+    background-color: $color-kbd-bg;
+    border: 1px solid $color-kbd-bd;
+    border-radius: 3px;
+    box-shadow: 0 1px 0 rgba(12,13,14,0.2),0 0 0 2px #FFF inset;
+    white-space: nowrap;
+    vertical-align: text-bottom;
 }
 
 table {

@@ -1,7 +1,7 @@
 /* Code blocks */
 code,
 pre {
-    color: black;
+    color: #525252;
     background: none;
     text-shadow: 0 1px white;
     font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
@@ -62,79 +62,72 @@ pre {
 
 /* Inline code */
 :not(pre) > code {
-    padding: .1em .2em;
     border-radius: .3em;
     white-space: normal;
     border: 1px solid #eeeeee;
+    color: #b70000;
+    padding: 3px 5px;
+    font-size: 0.9em;
 }
 
 .token.comment,
 .token.prolog,
 .token.doctype,
 .token.cdata {
-    color: slategray;
+    color: #999988; font-style: italic;
 }
 
-.token.punctuation {
-    color: #999;
-}
-
-.namespace {
+.token.namespace {
     opacity: .7;
 }
 
-.token.property,
-.token.tag,
-.token.boolean,
-.token.number,
-.token.constant,
-.token.symbol,
-.token.deleted {
-    color: #905;
-}
-
-.token.selector,
-.token.attr-name,
 .token.string,
-.token.char,
-.token.builtin,
-.token.inserted {
-    color: #690;
+.token.attr-value {
+    color: #e3116c;
+}
+.token.punctuation,
+.token.operator {
+    color: #393A34; /* no highlight */
 }
 
-.token.operator,
 .token.entity,
 .token.url,
-.language-css .token.string,
-.style .token.string {
-    color: #a67f59;
-    background: hsla(0, 0%, 100%, .5);
+.token.symbol,
+.token.number,
+.token.boolean,
+.token.variable,
+.token.constant,
+.token.property,
+.token.regex,
+.token.inserted {
+    color: #36acaa;
 }
 
 .token.atrule,
-.token.attr-value,
-.token.keyword {
-    color: #07a;
+.token.keyword,
+.token.attr-name,
+.language-autohotkey .token.selector {
+    color: #00a4db;
 }
 
-.token.function {
-    color: #DD4A68;
+.token.function,
+.token.deleted,
+.language-autohotkey .token.tag {
+    color: #9a050f;
 }
 
-.token.regex,
+.token.tag,
+.token.selector,
+.language-autohotkey .token.keyword {
+    color: #00009f;
+}
+
 .token.important,
-.token.variable {
-    color: #e90;
-}
-
-.token.important,
+.token.function,
 .token.bold {
     font-weight: bold;
 }
+
 .token.italic {
     font-style: italic;
-}
-
-.token.entity {
-    cursor: help;
 }

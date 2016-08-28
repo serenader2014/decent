@@ -67,8 +67,8 @@
     }
 }
 
-.nav:before, 
-.nav:after, 
+.nav:before,
+.nav:after,
 .site-footer:before {
     content: '';
     display: block;
@@ -225,6 +225,8 @@
 .single-post .post-content > tfoot,
 .single-post .post-content > video,
 .single-post .post-content > iframe,
+.single-post .post-content > .tip,
+.single-post .post-content > .preface,
 .read-next,
 .load-comments {
     width: 90%;

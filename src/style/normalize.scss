@@ -4,8 +4,8 @@ html {
     -webkit-text-size-adjust: 100%
 }
 
-body { 
-    margin: 0; 
+body {
+    margin: 0;
 }
 
 article,
@@ -19,8 +19,8 @@ main,
 menu,
 nav,
 section,
-summary { 
-    display:block; 
+summary {
+    display:block;
 }
 
 audio,
@@ -31,49 +31,49 @@ video {
     vertical-align: baseline;
 }
 
-audio:not([controls]) { 
-    display: none; height: 0; 
+audio:not([controls]) {
+    display: none; height: 0;
 }
 
-[hidden], template { 
-    display: none; 
+[hidden], template {
+    display: none;
 }
 
-a { 
+a {
     background-color: transparent;
     &:active, &:hover {
         outline: 0;
     }
 }
 
-abbr[title] { 
-    border-bottom: 1px dotted; 
+abbr[title] {
+    border-bottom: 1px dotted;
 }
 
 b,
-strong { 
-    font-weight: bold; 
+strong {
+    font-weight: bold;
 }
 
-dfn { 
-    font-style: italic; 
+dfn {
+    font-style: italic;
 }
 
-h1 { 
+h1 {
     font-size: 2em;
-    margin: 0.67em 0; 
+    margin: 0.67em 0;
 }
 
-mark { 
+mark {
     background: #ff0;
     color: #000;
 }
 
-small { 
-    font-size: 80%; 
+small {
+    font-size: 80%;
 }
 
-sub, 
+sub,
 sup {
     font-size: 75%;
     line-height: 0;
@@ -81,103 +81,103 @@ sup {
     vertical-align: baseline;
 }
 
-sup { 
-    top: -0.5em; 
+sup {
+    top: -0.5em;
 }
 
-sub { 
-    bottom: -0.25em; 
+sub {
+    bottom: -0.25em;
 }
 
-img { 
-    border: 0; 
+img {
+    border: 0;
 }
 
-svg:not(:root) { 
-    overflow: hidden; 
+svg:not(:root) {
+    overflow: hidden;
 }
 
-figure { 
-    margin: 1em 40px; 
+figure {
+    margin: 1em 40px;
 }
 
-hr { 
-    box-sizing: content-box; 
-    height: 0; 
+hr {
+    box-sizing: content-box;
+    height: 0;
 }
 
-pre { 
-    overflow: auto; 
+pre {
+    overflow: auto;
 }
 
-code, 
-kbd, 
-pre, 
-samp { 
-    font-family: monospace, monospace; 
-    font-size: 1em; 
+code,
+kbd,
+pre,
+samp {
+    font-family: monospace, monospace;
+    font-size: 0.95em;
 }
 
-button, 
+button,
 input,
-optgroup, 
-select, 
+optgroup,
+select,
 textarea {
     color: inherit;
     font: inherit;
     margin: 0;
 }
 
-button { 
-    overflow: visible; 
+button {
+    overflow: visible;
 }
 
-button, 
-select { 
-    text-transform: none; 
+button,
+select {
+    text-transform: none;
 }
 
-button, 
+button,
 html input[type="button"],
-input[type="reset"], 
+input[type="reset"],
 input[type="submit"] {
     -webkit-appearance: button;
     cursor: pointer;
 }
 
-button[disabled], 
-html input[disabled] { 
-    cursor: default; 
+button[disabled],
+html input[disabled] {
+    cursor: default;
 }
 
-button::-moz-focus-inner, 
-input::-moz-focus-inner { 
-    border: 0; 
-    padding: 0; 
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+    border: 0;
+    padding: 0;
 }
 
-input { 
-    line-height: normal; 
+input {
+    line-height: normal;
 }
 
 input[type="checkbox"],
-input[type="radio"] { 
-    box-sizing: border-box; 
-    padding: 0; 
+input[type="radio"] {
+    box-sizing: border-box;
+    padding: 0;
 }
 
 input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button { 
-    height: auto; 
+input[type="number"]::-webkit-outer-spin-button {
+    height: auto;
 }
 
-input[type="search"] { 
-    -webkit-appearance: textfield; 
+input[type="search"] {
+    -webkit-appearance: textfield;
 }
 
 input[type="search"]::-webkit-search-cancel-button,
-input[type="search"]::-webkit-search-decoration { 
-    -webkit-appearance: none; 
+input[type="search"]::-webkit-search-decoration {
+    -webkit-appearance: none;
 }
 
 fieldset {
@@ -186,26 +186,26 @@ fieldset {
     padding: 0.35em 0.625em 0.75em;
 }
 
-legend { 
-    border: 0; 
-    padding: 0; 
+legend {
+    border: 0;
+    padding: 0;
 }
 
-textarea { 
-    overflow: auto; 
+textarea {
+    overflow: auto;
 }
 
-optgroup { 
-    font-weight: bold; 
+optgroup {
+    font-weight: bold;
 }
 
-table{ 
-    border-collapse: collapse; 
-    border-spacing: 0; 
+table{
+    border-collapse: collapse;
+    border-spacing: 0;
 }
 
-td, 
-th{ 
-    padding: 0; 
+td,
+th{
+    padding: 0;
 }
 
