@@ -1,15 +1,15 @@
 ### Home page
 
-![home page](../screenshot/homepage.png)
+![home page](../screenshot/homepage.jpg)
 
 ### Post page
 
-![post page](../screenshot/post.png)
+![post page](../screenshot/post.jpg)
 
 ### Author page
 
-![author page](../screenshot/author.png)
+![author page](../screenshot/author.jpg)
 
 ### Tag page
 
-![tag page](../screenshot/tag.png)
+![tag page](../screenshot/tag.jpg)

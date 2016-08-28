@@ -12,7 +12,7 @@ Demo: [Post page demostration](https://blog.serenader.me/ghost-theme-demostratio
 > <cite>——R.M. Nixon</cite>
 ```
 
-![quot with cite](../screenshot/quote-with-cite.png)
+![quot with cite](../screenshot/quote-with-cite.jpg)
 
 ### How to add image with caption
 
@@ -27,7 +27,7 @@ Demo: [Post page demostration](https://blog.serenader.me/ghost-theme-demostratio
 </figure>
 ```
 
-![image with caption](../screenshot/image-with-caption.png)
+![image with caption](../screenshot/image-with-caption.jpg)
 
 ### How to add image with alignment
 
@@ -40,7 +40,7 @@ Demo: [Post page demostration](https://blog.serenader.me/ghost-theme-demostratio
 ![](/content/images/2016/05/untitled-9.gif#left)
 ```
 
-![image-with-alignment](../screenshot/image-with-alignment.png)
+![image-with-alignment](../screenshot/image-with-alignment.jpg)
 
 ### How to add image with caption and with alignment
 
@@ -55,7 +55,7 @@ Demo: [Post page demostration](https://blog.serenader.me/ghost-theme-demostratio
 </figure>
 ```
 
-![figure-with-alignment](../screenshot/figure-with-alignment.png)
+![figure-with-alignment](../screenshot/figure-with-alignment.jpg)
 
 ### How to add fullscreen image
 
@@ -103,7 +103,7 @@ Demo: [Post page demostration](https://blog.serenader.me/ghost-theme-demostratio
 </div>
 ```
 
-![image album](../screenshot/image-album.png)
+![image album](../screenshot/image-album.jpg)
 
 ### How to add image gallery(album) with caption
 
@@ -150,4 +150,4 @@ Demo: [Post page demostration](https://blog.serenader.me/ghost-theme-demostratio
 </div>
 ```
 
-![image with caption gallery](../screenshot/image-with-caption-album.png)
+![image with caption gallery](../screenshot/image-with-caption-album.jpg)
