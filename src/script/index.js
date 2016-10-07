@@ -25,7 +25,9 @@
             if (result.length && result[1]) {
                 $title.html(result[1]);
             }
-            ga('send', 'pageview', url);
+            if (decentThemeConfig.ga) {
+                ga('send', 'pageview', url);
+            }
         })
     }
 
