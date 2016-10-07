@@ -65,4 +65,6 @@ gulp.task('zip', function () {
         .pipe(gulp.dest('./'));
 });
 
+gulp.task('build', ['sass', 'js', 'photoswipe', 'font']);
+
 gulp.task('default', ['sass', 'js', 'dev', 'photoswipe', 'font', 'watch']);
