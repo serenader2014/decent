@@ -1,50 +1,138 @@
 /* globals jQuery, document */
-(function ($, undefined) {
-    var $document = $(document);
-    var $window = $(window);
-    var $content = $('#html-wrapper');
-    var $title = $('title');
-    var goToTop = $('.go-to-top');
-    var windowHeight = $window.height();
+(function () {
+    var content = document.querySelector('#html-wrapper');
+    var title = document.querySelector('title');
+    var goToTop = document.querySelector('.go-to-top');
+    var html = document.querySelector('html');
+    var body = document.body;
+    var windowHeight = document.documentElement.clientHeight;
     var timeoutHandler;
+    var requestList = [];
+    var progress = new Progress();
 
     // make sure `decentThemeConfig` is exist.
     if (typeof decentThemeConfig === 'undefined') {
         window.decentThemeConfig = {};
     }
 
+    function get(url, callback) {
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                requestList.splice(requestList.indexOf(url), 1);
+                if (!requestList.length) {
+                    progress.end();
+                }
+                callback(xhr.responseText);
+            }
+        };
+        requestList.push(url);
+        if (progress.status !== 'loading') {
+            progress.start();
+        }
+        xhr.open('GET', url, true);
+        xhr.send(null);
+    }
+
+    function fadeOut(element, callback) {
+        var currentOpacity = element.style.opacity || 1;
+
+        setTimeout(function () {
+            var opacity = Number(currentOpacity) - 0.05;
+            element.style.opacity = opacity < 0 ? 0 : opacity;
+            if (opacity > 0) {
+                fadeOut(element, callback);
+            } else {
+                element.style.display = 'none';
+                typeof callback === 'function' && callback();
+            }
+        }, 10);
+    }
+
+    function fadeIn(element, callback) {
+        var currentOpacity = element.style.opacity || 1;
+        var display = element.style.display;
+        if (display === 'none') {
+            element.style.display = 'block';
+        }
+
+        setTimeout(function () {
+            var opacity = Number(currentOpacity) + 0.05;
+            element.style.opacity = opacity > 1 ? 1 : opacity;
+            if (opacity < 1) {
+                fadeIn(element, callback);
+            } else {
+                typeof callback === 'function' && callback();
+            }
+        }, 10);
+    }
+
+    function scrollToTop(animate, distance, callback) {
+        var currentTop = body.scrollTop;
+        var direction = currentTop > distance ? -1 : 1;
+        if (!animate) {
+            body.scrollTop = distance;
+            html.scrollTop = distance;
+            return;
+        }
+        setTimeout(function () {
+            var top;
+
+            if (direction === 1) {
+                top = currentTop + 10;
+                body.scrollTop = top > distance ? distance : top;
+                html.scrollTop = top > distance ? distance : top;
+            } else {
+                top = currentTop - 10;
+                body.scrollTop = top < distance ? distance : top;
+                html.scrollTop = top < distance ? distance : top;
+            }
+
+            if ((direction === 1 && top > distance) || (direction === -1 && top < distance)) {
+                typeof callback && callback();
+            } else {
+                scrollToTop(animate, distance, callback);
+            }
+        }, 10);
+    }
+
     // loading page using ajax
     function loadHTML(url) {
-        $.get(url).success(function (response) {
-            $content.fadeOut(function () {
-                $content.html($(response).find('#html')).fadeIn();
-                runScript(true);
-            });
-            var titleRegExp = /<title[^>]*>((.|[\n\r])*)<\/title>/im;
-            var result = titleRegExp.exec(response);
-            if (result.length && result[1]) {
-                $title.html(result[1]);
-            }
-            if (decentThemeConfig.ga) {
-                ga('send', 'pageview', url);
-            }
+        fadeOut(content, function () {
+            scrollToTop(false, 0);
+            get(url, function (response) {
+                var tmpElement = document.createElement('div');
+                tmpElement.innerHTML = response;
+                content.innerHTML = tmpElement.querySelector('#html').innerHTML;
+                fadeIn(content, function () {
+                    runScript(true);
+                });
+
+                var titleRegExp = /<title[^>]*>((.|[\n\r])*)<\/title>/im;
+                var result = titleRegExp.exec(response);
+                if (result.length && result[1]) {
+                    title.innerText = result[1];
+                }
+                if (decentThemeConfig.ga) {
+                    ga('send', 'pageview', url);
+                }
+            })
         })
     }
 
     // load comment
     function loadComment() {
         if (decentThemeConfig && decentThemeConfig.duoshuo) {
-            $('.ds-thread').show();
+            document.querySelector('.ds-thread').style.display = 'block';
             window.duoshuoQuery = {short_name: decentThemeConfig.duoshuo};
             var ds = document.createElement('script');
             ds.type = 'text/javascript';ds.async = true;
             ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
             ds.charset = 'UTF-8';
-            (document.getElementsByTagName('head')[0]
-             || document.getElementsByTagName('body')[0]).appendChild(ds);
+            (document.head || document.body).appendChild(ds);
         }
         if (decentThemeConfig && decentThemeConfig.disqus) {
-            $('#disqus_thread').show();
+            document.querySelector('#disqus_thread').style.display = 'block';
             var disqus_config = function () {
                 this.page.url = '{{post.url}}';
                 this.page.identifier = '{{post.id}}';
@@ -58,12 +146,12 @@
 
     // get image's real size
     function getImageRealSize(image, callback) {
-        var self = $(image);
-        var src = self.attr('src');
+        var src = image.getAttribute('src');
         var newImg = new Image();
         newImg.addEventListener('load', function () {
             // save all the image's original size, will use in photoswipe
-            self.attr('data-width', newImg.width).attr('data-height', newImg.height);
+            image.setAttribute('data-width', newImg.width);
+            image.setAttribute('data-height', newImg.height);
             typeof callback === 'function' && callback({width: newImg.width, height: newImg.height});
         });
         newImg.src = src;
@@ -71,66 +159,45 @@
 
     // run scripts in every page
     function runScript(ajax) {
-        var $postContent = $('.post-content');
-        $postContent.fitVids();
+        var postContent = document.querySelector('.post-content');
+        // $postContent.fitVids();
 
-        $postContent.find('img').each(function (index, item) {
+        if (!postContent) return;
+        var images = [].slice.call(postContent.querySelectorAll('img'));
+        images.forEach(function (item) {
             getImageRealSize(item);
         });
 
         if (ajax) {
-            goToTop = $('.go-to-top');
-            $('html, body').scrollTop(0);
+            goToTop = document.querySelector('.go-to-top');
             Prism.highlightAll();
         }
-    }
-
-    // hook ajax request, when a request was made, showing a progress bar
-    // indicator, and hide it when the request was finished.
-    function hookAjax() {
-        var requestList = [];
-        var progress = new Progress();
-        $document.ajaxSend(function (event, xhr, option) {
-            requestList.push(option.url);
-            if (progress.status !== 'loading') {
-                progress.start();
-            }
-        });
-
-        $document.ajaxComplete(function (event, xhr, option) {
-            requestList.splice(requestList.indexOf(option.url), 1);
-            if (!requestList.length) {
-                progress.end();
-            }
-        });
     }
 
     // use ajax to loage webpage instead of a normal page request.
     function loadPageWithAjax() {
         // listen to the history change, load the target page
-        var history = History.createHistory();
-        history.listen(function (location) {
-            if (location.action === 'POP') {
-                loadHTML(location.pathname);
+        window.addEventListener('popstate', function (e) {
+            if (e.state && e.state.pathname) {
+                loadHTML(e.state.pathname);
             }
-        })
+        });
 
         // hook all the internal link, when user click the link,
         // perform an ajax request, and prevent the default behavior
-        $document.on('click', 'a', function (e) {
-            if (this.hostname !== location.hostname) return;
+        document.addEventListener('click', function (e) {
+            if (e.target.tagName.toLowerCase() !== 'a') return;
+            if (e.target.hostname !== location.hostname) return;
             e.preventDefault();
-            var pathname = this.pathname;
-            history.push({
-                pathname: pathname
-            })
+            var pathname = e.target.pathname;
+            window.history.pushState({ pathname: pathname }, pathname, pathname);
             loadHTML(pathname);
         });
     }
 
-    $document.ready(function () {
+
+    document.addEventListener('DOMContentLoaded', function () {
         runScript();
-        hookAjax();
 
         // enable the ajax load only if the browser support history and pushState
         if (window.history && window.history.pushState) {
@@ -139,33 +206,34 @@
     });
 
     //  goToTop button
-    $window.on('scroll', function () {
-        if ($window.width() <= 500) {
+    document.addEventListener('scroll', function () {
+        if (document.documentElement.clientWidth <= 500) {
             return;
         }
-        var top = $(this).scrollTop();
-        if (top > windowHeight/2 && !goToTop.is(':visible')) {
-            goToTop.fadeIn();
+        var top = body.scrollTop;
+        if (top > windowHeight/2 && goToTop.style.display !== 'block') {
+            fadeIn(goToTop);
         }
-        if (top <= windowHeight/2 && goToTop.is(':visible')) {
-            goToTop.fadeOut();
+        if (top <= windowHeight/2 && goToTop.style.display === 'block') {
+            fadeOut(goToTop);
         }
         if (timeoutHandler) {
             clearTimeout(timeoutHandler);
         }
 
-        goToTop.removeClass('less-opacity');
+        goToTop.classList.remove('less-opacity');
         timeoutHandler = setTimeout(function () {
-            goToTop.addClass('less-opacity');
+            goToTop.classList.add('less-opacity');
         }, 2000);
     });
 
-    $document.on('click', '.go-to-top', function () {
-        $('body, html').animate({scrollTop: 0});
+    document.addEventListener('click', function (e) {
+        if (e.target.classList.value.split(' ').indexOf('.go-to-top') === -1) return;
+        scrollToTop(true, 0);
     });
 
     // album image slider
-    $document.on('click', '.album img', function () {
+    document.addEventListener('click', '.album img', function () {
         var album = $(this).parents('.album');
         var items = [];
         var imgList = album.find('img');
@@ -199,7 +267,7 @@
     });
 
     // post image slider
-    $document.on('click', '.post-content img', function () {
+    $(document).on('click', '.post-content img', function () {
         var $img = $(this);
         if ($img.parents('.album').length) {
             return;
@@ -220,7 +288,7 @@
     });
 
     // load comment
-    $document.on('click', '.load-comments', function () {
+    $(document).on('click', '.load-comments', function () {
         loadComment();
         $(this).hide();
     })
@@ -236,4 +304,4 @@
         ga('create', trackId, 'auto');
         ga('send', 'pageview');
     }
-})(jQuery);
+})();
