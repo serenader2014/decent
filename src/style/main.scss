@@ -177,6 +177,14 @@
     opacity: 0.8;
     transition: all 0.3s;
 
+    &.show {
+        display: block;
+    }
+
+    &.hide {
+        display: none;
+    }
+
     &.less-opacity {
         opacity: 0.2;
     }

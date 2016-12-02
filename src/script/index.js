@@ -1,4 +1,3 @@
-/* globals jQuery, document */
 (function () {
     var content = document.querySelector('#html-wrapper');
     var title = document.querySelector('title');
@@ -9,10 +8,31 @@
     var timeoutHandler;
     var requestList = [];
     var progress = new Progress();
+    var scrollingStep = 100;
+    var fadingStep = 0.05;
+    var slice = [].slice;
 
     // make sure `decentThemeConfig` is exist.
     if (typeof decentThemeConfig === 'undefined') {
         window.decentThemeConfig = {};
+    }
+
+    function getStyle(element, prop) {
+        if (window.getComputedStyle) {
+            return window.getComputedStyle(element).getPropertyValue(prop);
+        } else if (element.currentStyle) {
+            return element.currentStyle[prop];
+        } else {
+            return '';
+        }
+    }
+
+    function match(element, selector) {
+        var p = Element.prototype;
+        var f = p.matches || p.webkitMatchesSelector || p.mozMatchesSelector || p.msMatchesSelector || function(s) {
+            return [].indexOf.call(document.querySelectorAll(s), this) !== -1;
+        };
+        return f.call(element, selector);
     }
 
     function get(url, callback) {
@@ -35,11 +55,11 @@
     }
 
     function fadeOut(element, callback) {
-        var currentOpacity = element.style.opacity || 1;
+        var currentOpacity = getStyle(element, 'opacity') || 1;
+        var opacity = Number(currentOpacity) - fadingStep;
+        element.style.opacity = opacity < 0 ? 0 : opacity;
 
         setTimeout(function () {
-            var opacity = Number(currentOpacity) - 0.05;
-            element.style.opacity = opacity < 0 ? 0 : opacity;
             if (opacity > 0) {
                 fadeOut(element, callback);
             } else {
@@ -50,15 +70,15 @@
     }
 
     function fadeIn(element, callback) {
-        var currentOpacity = element.style.opacity || 1;
-        var display = element.style.display;
+        var currentOpacity = getStyle(element, 'opacity') || 1;
+        var display = getStyle(element, 'display');
         if (display === 'none') {
             element.style.display = 'block';
+            currentOpacity = 0;
         }
-
+        var opacity = Number(currentOpacity) + fadingStep;
+        element.style.opacity = opacity > 1 ? 1 : opacity;
         setTimeout(function () {
-            var opacity = Number(currentOpacity) + 0.05;
-            element.style.opacity = opacity > 1 ? 1 : opacity;
             if (opacity < 1) {
                 fadeIn(element, callback);
             } else {
@@ -79,17 +99,17 @@
             var top;
 
             if (direction === 1) {
-                top = currentTop + 10;
+                top = currentTop + scrollingStep;
                 body.scrollTop = top > distance ? distance : top;
                 html.scrollTop = top > distance ? distance : top;
             } else {
-                top = currentTop - 10;
+                top = currentTop - scrollingStep;
                 body.scrollTop = top < distance ? distance : top;
                 html.scrollTop = top < distance ? distance : top;
             }
 
             if ((direction === 1 && top > distance) || (direction === -1 && top < distance)) {
-                typeof callback && callback();
+                typeof callback === 'function' && callback();
             } else {
                 scrollToTop(animate, distance, callback);
             }
@@ -157,13 +177,62 @@
         newImg.src = src;
     }
 
+    function fitVids() {
+        if(!document.querySelector('#fit-vids-style')) {
+            // appendStyles: https://github.com/toddmotto/fluidvids/blob/master/dist/fluidvids.js
+            var head = document.head || document.getElementsByTagName('head')[0];
+            var css = '.fluid-width-video-wrapper{width:100%;position:relative;padding:0;}.fluid-width-video-wrapper iframe,.fluid-width-video-wrapper object,.fluid-width-video-wrapper embed {position:absolute;top:0;left:0;width:100%;height:100%;}';
+            var div = document.createElement('div');
+            div.innerHTML = '<p>x</p><style id="fit-vids-style">' + css + '</style>';
+            head.appendChild(div.childNodes[1]);
+        }
+
+        var selectors = [
+            "iframe[src*='player.vimeo.com']",
+            "iframe[src*='youtube.com']",
+            "iframe[src*='youtube-nocookie.com']",
+            "iframe[src*='kickstarter.com'][src*='video.html']",
+            "object",
+            "embed"
+        ];
+
+        var allVideos = slice.call(document.querySelectorAll(selectors.join(',')));
+
+        allVideos.forEach(function(video){
+            var tagName = video.tagName.toLowerCase();
+            var h = video.getAttribute('height');
+            var w = video.getAttribute('width');
+            if (tagName === 'embed' && findParents(video, 'object') || findParents('.fluid-width-video-wrapper')) {
+                return;
+            }
+
+            var height = (tagName === 'embed' || (h && !isNaN(parseInt(h, 10)))) ? parseInt(h, 10) : video.height;
+            var width = !isNaN(parseInt(w, 10)) ? parseInt(w, 10) : video.width;
+            var aspectRatio = height / width;
+
+            if (video.getAttribute('id')) {
+                var videoID = 'fitvid' + Math.floor(Math.random() * 9999999);
+                video.setAttribute('id', videoID);
+            }
+
+            var wrapper = document.createElement('div');
+            wrapper.classList.add('fluid-width-video-wrapper');
+            video.parentNode.insertBefore(wrapper, video);
+            video.parentNode.removeChild(video);
+            wrapper.appendChild(video);
+            wrapper.style.height = (aspectRatio * parseInt(getStyle(wrapper, 'width'), 10)) + 'px';
+            video.removeAttribute('width');
+            video.removeAttribute('height');
+        });
+    }
+
     // run scripts in every page
     function runScript(ajax) {
         var postContent = document.querySelector('.post-content');
-        // $postContent.fitVids();
+        fitVids();
 
         if (!postContent) return;
-        var images = [].slice.call(postContent.querySelectorAll('img'));
+        var images = slice.call(postContent.querySelectorAll('img'));
         images.forEach(function (item) {
             getImageRealSize(item);
         });
@@ -185,16 +254,34 @@
 
         // hook all the internal link, when user click the link,
         // perform an ajax request, and prevent the default behavior
-        document.addEventListener('click', function (e) {
-            if (e.target.tagName.toLowerCase() !== 'a') return;
-            if (e.target.hostname !== location.hostname) return;
+        delegate(document, 'click', 'a', function (e) {
+            if (this.hostname !== location.hostname) return;
             e.preventDefault();
-            var pathname = e.target.pathname;
+            var pathname = this.pathname;
             window.history.pushState({ pathname: pathname }, pathname, pathname);
             loadHTML(pathname);
+        })
+    }
+
+    function delegate(agent, type, selector, fn) {
+        agent.addEventListener(type, function (e) {
+            var target = e.target;
+            if (match(target, selector)) {
+                fn.call(target, e);
+            }
         });
     }
 
+    function findParents(element, selector) {
+        if (!element.parentNode || element.parentNode == document) {
+            return null;
+        }
+        if (match(element.parentNode, selector)) {
+            return element.parentNode;
+        } else {
+            return findParents(element.parentNode, selector);
+        }
+    }
 
     document.addEventListener('DOMContentLoaded', function () {
         runScript();
@@ -211,11 +298,13 @@
             return;
         }
         var top = body.scrollTop;
-        if (top > windowHeight/2 && goToTop.style.display !== 'block') {
-            fadeIn(goToTop);
+        if (top > windowHeight/2 && getStyle(goToTop, 'display') !== 'block') {
+            goToTop.classList.remove('hide');
+            goToTop.classList.add('show');
         }
-        if (top <= windowHeight/2 && goToTop.style.display === 'block') {
-            fadeOut(goToTop);
+        if (top <= windowHeight/2 && getStyle(goToTop, 'display') === 'block') {
+            goToTop.classList.remove('show');
+            goToTop.classList.add('hide');
         }
         if (timeoutHandler) {
             clearTimeout(timeoutHandler);
@@ -227,35 +316,37 @@
         }, 2000);
     });
 
-    document.addEventListener('click', function (e) {
-        if (e.target.classList.value.split(' ').indexOf('.go-to-top') === -1) return;
+    delegate(document, 'click', '.go-to-top', function () {
         scrollToTop(true, 0);
-    });
+    })
 
     // album image slider
-    document.addEventListener('click', '.album img', function () {
-        var album = $(this).parents('.album');
+    delegate(document, 'click', '.album img', function () {
+        var self = this;
+        var album = findParents(this, '.album');
         var items = [];
-        var imgList = album.find('img');
+        var imgList = slice.call(album.querySelectorAll('img'));
+        var index;
 
-        imgList.each(function (index, img) {
-            var $img = $(img);
-            var src = $img.attr('src');
-            var title = $img.siblings('figcaption');
+        imgList.forEach(function (img, idx) {
+            var src = img.getAttribute('src');
+            var title = img.parentNode.querySelector('figcaption');
             var option = {
                 src: src,
-                w: $img.data('width') || img.width,
-                h: $img.data('height') || img.height,
-                index: index,
+                w: img.getAttribute('data-width') || img.width,
+                h: img.getAttribute('data-height') || img.height,
+                index: idx,
             };
-            if (title.length) {
-                option.title = title.html();
+            if (title) {
+                option.title = title.innerText;
             }
             items.push(option);
+            if (img === self) {
+                index = idx;
+            }
         });
 
-        var index = imgList.index($(this));
-        var pswpElement = $('.pswp').get(0);
+        var pswpElement = document.querySelector('.pswp');
 
         var options = {
             index: index,
@@ -267,20 +358,20 @@
     });
 
     // post image slider
-    $(document).on('click', '.post-content img', function () {
-        var $img = $(this);
-        if ($img.parents('.album').length) {
+    delegate(document, 'click', '.post-content img', function () {
+        var img = this;
+        if (findParents(this, '.album')) {
             return;
         }
-        var pswpElement = $('.pswp').get(0);
+        var pswpElement = document.querySelector('.pswp');
         var options = {
             index: 0,
             history: false,
         };
         var items = [{
-            src: $img.attr('src'),
-            w: $img.data('width') || $img.width(),
-            h: $img.data('height') || $img.height(),
+            src: img.getAttribute('src'),
+            w: img.getAttribute('data-width') || img.width,
+            h: img.getAttribute('data-height') || img.height,
         }];
 
         var gallery = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, items, options);
@@ -288,10 +379,10 @@
     });
 
     // load comment
-    $(document).on('click', '.load-comments', function () {
+    delegate(document, 'click', '.load-comments button', function () {
         loadComment();
-        $(this).hide();
-    })
+        this.style.display = 'none';
+    });
 
     // GA
     if (decentThemeConfig.ga) {
