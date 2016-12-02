@@ -1,6 +1,6 @@
 {
   "name": "decent",
-  "version": "2.0.2",
+  "version": "2.1.0",
   "devDependencies": {
     "browser-sync": "^2.12.8",
     "gulp": "^3.9.1",
