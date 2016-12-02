@@ -4,12 +4,15 @@ A Ghost blog theme, modified from [Casper](https://github.com/TryGhost/Casper). 
 
 Demo: [my blog](https://blog.serenader.me)
 
+![screenshot](screenshot/homepage.jpg)
+
 ## Screenshot
 
 Moved to [docs/screenshot.md](docs/screenshot.md)
 
 ## Features
 
+- Ajax powered page loading.
 - Minimalist design, less is more.
 - Syntax highlighting.
 - Responsive deign.
@@ -37,6 +40,10 @@ See [docs/configuration.md](docs/configuration.md).
 3. In the Ghost admin page, navigate to `General` section, change the theme to `decent`
 4. In the Ghost admin page, navigate to `Code Injection` section, add some configurations, for example, add Google Analytics service or Duoshuo comment service.
 5. Everything is done. Just visit your blog's home page to enjoy the theme.
+
+## Compatibility
+
+decent theme works great with Ghost `>= v0.8 && < v1.0`. The frontend code works great in modern browser.
 
 ## Development
 
