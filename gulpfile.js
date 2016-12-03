@@ -56,8 +56,8 @@ gulp.task('watch', function () {
     gulp.watch('./src/assets/**/*', ['photoswipe']);
 });
 
-gulp.task('zip', function () {
-    return gulp.src(['**/*', '!./node_modules/**/*', '!./screenshot/**/*'])
+gulp.task('zip', ['build'], function () {
+    return gulp.src(['**/*', '!./node_modules/**/*', '!./screenshot/**/*', '!*.zip', '!*.log'])
         .pipe(zip('decent-v' + pkg.version + '.zip'))
         .pipe(gulp.dest('./'));
 });
