@@ -252,6 +252,8 @@
             }
         });
 
+        window.history.pushState({ pathname: location.pathname }, location.pathname, location.pathname)
+
         // hook all the internal link, when user click the link,
         // perform an ajax request, and prevent the default behavior
         delegate(document, 'click', 'a', function (e) {
