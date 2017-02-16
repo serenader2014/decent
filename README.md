@@ -25,14 +25,6 @@ Moved to [docs/screenshot.md](docs/screenshot.md)
 - Disqus comment service.
 - All Optional services can be configured in the Ghost admin page, you don't have to manually modify the code.
 
-## Writing markdown
-
-This theme support some custom styles, it enable you to write some cool styles in markdown, such as image caption, image alignment and so on. The detailed documentation can be found at [docs/writing-markdown.md](docs/writing-markdown.md).
-
-## Configuration
-
-See [docs/configuration.md](docs/configuration.md).
-
 ## Installation
 
 1. Download this theme from [Github release page](https://github.com/serenader2014/decent/releases), and extract the files to the Ghost's theme folder: `content/themes`.
@@ -40,6 +32,14 @@ See [docs/configuration.md](docs/configuration.md).
 3. In the Ghost admin page, navigate to `General` section, change the theme to `decent`
 4. In the Ghost admin page, navigate to `Code Injection` section, add some configurations, for example, add Google Analytics service or Duoshuo comment service.
 5. Everything is done. Just visit your blog's home page to enjoy the theme.
+
+## Writing markdown
+
+This theme support some custom styles, it enable you to write some cool styles in markdown, such as image caption, image alignment and so on. The detailed documentation can be found at [docs/writing-markdown.md](docs/writing-markdown.md).
+
+## Configuration
+
+See [docs/configuration.md](docs/configuration.md).
 
 ## Compatibility
 
@@ -63,7 +63,6 @@ decent theme works great with Ghost `>= v0.8 && < v1.0`. The frontend code works
 - [Duoshuo](http://duoshuo.com/)
 - [Disqus](https://disqus.com/)
 - [Progress.js](https://github.com/serenader2014/progress.js)
-- [history.js](https://www.npmjs.com/package/history)
 
 ## License
 
