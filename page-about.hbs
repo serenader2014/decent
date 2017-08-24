@@ -5,11 +5,11 @@
 {{#post}}
 {{! Everything inside the #author tags pulls data from the author }}
 {{#author}}
-    <section class="author-profile" {{#if cover}}style="background-image:url('{{cover}}')"{{/if}}>
+    <section class="author-profile" {{#if cover_image}}style="background-image:url('{{cover_image}}')"{{/if}}>
     <a href="{{@blog.url}}" class="go-home-page" style="background-image:url({{#if @blog.logo}}{{@blog.logo}}{{else}}{{asset "/assets/go-home.png"}}{{/if}}")></a>
         <div class="author-info">
-            <figure class="author-image {{#if cover}}has-cover{{/if}}">
-                <div class="img image-bg" style="background-image: url({{image}})"><span class="hidden">{{name}}'s Picture</span></div>
+            <figure class="author-image {{#if cover_image}}has-cover{{/if}}">
+                <div class="img image-bg" style="background-image: url({{img_url profile_image}})"><span class="hidden">{{name}}'s Picture</span></div>
             </figure>
                 <h1 class="author-title">{{name}}</h1>
                 {{#if bio}}

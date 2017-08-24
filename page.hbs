@@ -6,7 +6,7 @@
 {{! Everything inside the #post tags pulls data from the page }}
 {{#post}}
 
-<header class="main-header detail-page image-bg post-head {{#if image}}has-cover" style="background-image: url({{image}}){{else}}no-cover{{/if}}">
+<header class="main-header detail-page image-bg post-head {{#if feature_image}}has-cover" style="background-image: url({{img_url feature_image}}){{else}}no-cover{{/if}}">
     <a href="{{@blog.url}}" class="go-home-page" style="background-image:url({{#if @blog.logo}}{{@blog.logo}}{{else}}{{asset "/assets/go-home.png"}}{{/if}}")></a>
     <h1 class="page-title"><a href="{{@blog.url}}">{{@blog.title}}</a></h1>
     <h2 class="page-description">{{@blog.description}}</h2>
@@ -30,9 +30,9 @@
         {{! Everything inside the #author tags pulls data from the author }}
         {{#author}}
 
-            {{#if image}}
+            {{#if profile_image}}
             <div class="author-image">
-                <a class="img image-bg" href="{{url}}" style="background-image: url({{image}})"><span class="hidden">{{name}}'s Picture</span></a>
+                <a class="img image-bg" href="{{url}}" style="background-image: url({{img_url profile_image}})"><span class="hidden">{{name}}'s Picture</span></a>
             </div>
             {{/if}}
 
@@ -104,7 +104,7 @@
                 </div>
             </div>
             <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-                <div class="pswp__share-tooltip"></div> 
+                <div class="pswp__share-tooltip"></div>
             </div>
             <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
             </button>

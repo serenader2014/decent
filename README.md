@@ -6,6 +6,10 @@ Demo: [my blog](https://blog.serenader.me)
 
 ![screenshot](screenshot/homepage.jpg)
 
+## Compatibility
+
+Since v3.x this theme is fully support Ghost v1.x, and will no longer compatible with Ghost v0.x version. If you want to use this theme under Ghost v0.x version, please look at previous release, all v2.x and v1.x release should work well under Ghost v0.8 ~ Ghost v0.11. If you want to hack into the source code, please checkout the `ghost-v0.x` branch. The master branch will reflects the latest development.
+
 ## Screenshot
 
 Moved to [docs/screenshot.md](docs/screenshot.md)
@@ -40,10 +44,6 @@ This theme support some custom styles, it enable you to write some cool styles i
 ## Configuration
 
 See [docs/configuration.md](docs/configuration.md).
-
-## Compatibility
-
-decent theme works great with Ghost `>= v0.8 && < v1.0`. The frontend code works great in modern browser.
 
 ## Development
 

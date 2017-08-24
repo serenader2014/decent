@@ -1,6 +1,7 @@
 {
   "name": "decent",
-  "version": "2.1.2",
+  "version": "3.0.0",
+  "description": "Simple, responsive, well-designed ghost theme",
   "devDependencies": {
     "browser-sync": "^2.12.8",
     "gulp": "^3.9.1",
@@ -9,5 +10,19 @@
     "gulp-sass": "^2.3.1",
     "gulp-uglify": "^1.5.3",
     "gulp-zip": "^3.2.0"
+  },
+  "scripts": {
+    "dev": "gulp"
+  },
+  "engines": {
+    "ghost": ">=1.0.0"
+  },
+  "license": "MIT",
+  "author": {
+    "email": "xyslive@gmail.com",
+    "name": "serenader"
+  },
+  "config": {
+    "posts_per_page": 10
   }
 }
